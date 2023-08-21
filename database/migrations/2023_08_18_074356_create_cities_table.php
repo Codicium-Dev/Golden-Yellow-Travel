@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
+        Schema::create('cities', function (Blueprint $table) {
+            $table->snowflakeIdAndPrimary();
             $table->string('name');
-            $table->string('email')->unique();
-            $table->enum('position', ['admin', 'staff'])->default('staff');
-            $table->string('password');
-            $table->timestamp('email_verified_at')->nullable();
-            $table->rememberToken();
+            $table->foreignId('tour_id');
+            $table->foreignId("package_id");
+            $table->string('city_photo');
             $table->auditColumns();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('cities');
     }
 };
