@@ -23,7 +23,26 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix("v1")->group(function () {
 
-    Route::middleware('auth:sanctum')->group(function () {
+    // Route::group([
+
+    //     'middleware' => 'api',
+    //     'namespace' => 'App\Http\Controllers',
+    //     'prefix' => 'auth'
+
+    // ], function () {
+    //     Route::controller(AuthController::class)->group(function () {
+    //         Route::post('register', "register");
+    //         Route::get('user-lists', 'showUserLists');
+    //         Route::get('your-profile', 'yourProfile');
+    //         Route::get('user-profile/{id}', 'checkUserProfile');
+    //         Route::put('edit', "edit");
+    //         Route::post("logout", 'logout');
+    //         Route::post("logout-all", 'logoutFromAllDevices');
+    //         Route::put("update-password", 'updatePassword');
+    //     });
+    // });
+
+    Route::middleware('jwt')->group(function () {
 
         Route::controller(AuthController::class)->group(function () {
             Route::post('register', "register");
@@ -37,8 +56,7 @@ Route::prefix("v1")->group(function () {
         });
     });
 
-    Route::post('login', [AuthController::class, 'login']);
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::get('/blog', [BlogController::class, "index"])->name("blog.index");
+    Route::post("/blog", [BlogController::class, "store"])->name("blog.store");
 });
-
-Route::get('/blog', [BlogController::class, "index"])->name("blog.index");
-Route::post("/blog", [BlogController::class, "store"])->name("blog.store");
