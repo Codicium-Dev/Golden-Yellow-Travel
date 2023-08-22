@@ -2,10 +2,25 @@
 
 namespace App\Models;
 
+use App\Traits\BasicAudit;
+use App\Traits\SnowflakeID;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Country extends Model
 {
-    use HasFactory;
+    use HasFactory, SnowflakeID, BasicAudit, SoftDeletes;
+
+    protected $fillable = ["name", "country_photo"];
+
+    public function city()
+    {
+        return $this->hasMany(City::class);
+    }
+
+    public function packages()
+    {
+        return $this->hasMany(Packages::class);
+    }
 }

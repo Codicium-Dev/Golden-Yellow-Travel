@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('cities', function (Blueprint $table) {
             $table->snowflakeIdAndPrimary();
             $table->string('name');
+            $table->foreignId('country_id')->constrained()->cascadeOnDelete();
             $table->foreignId('tour_id');
             $table->foreignId("package_id");
             $table->string('city_photo');

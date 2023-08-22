@@ -12,13 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('photos', function (Blueprint $table) {
-            $table->snowflakeIdAndPrimary();
+            $table->id();
             $table->foreignId('user_id');
-            $table->foreignId('country_id');
-            $table->foreignId('tour_id');
-            $table->foreignId('city_id');
-            $table->foreignId('package_id');
-            $table->foreignId('itinerary_id');
             $table->string('url');
             $table->string('name');
             $table->string('extension');

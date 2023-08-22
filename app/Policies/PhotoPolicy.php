@@ -11,6 +11,14 @@ class PhotoPolicy
     /**
      * Determine whether the user can view any models.
      */
+
+    public function before(User $user)
+    {
+        if ($user->role === 'admin') {
+            return true;
+        }
+    }
+
     public function viewAny(User $user): bool
     {
         //
@@ -21,7 +29,7 @@ class PhotoPolicy
      */
     public function view(User $user, Photo $photo): bool
     {
-        //
+        return $user->id == $photo->user_id;
     }
 
     /**
@@ -45,7 +53,7 @@ class PhotoPolicy
      */
     public function delete(User $user, Photo $photo): bool
     {
-        //
+        return $user->id == $photo->user_id;
     }
 
     /**

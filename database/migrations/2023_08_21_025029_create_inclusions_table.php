@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('inclusions', function (Blueprint $table) {
             $table->snowflakeIdAndPrimary();
+            $table->foreignId('tour_id')->constrained()->cascadeOnDelete();
             $table->string('start_date');
             $table->string('end_date');
             $table->string('category');

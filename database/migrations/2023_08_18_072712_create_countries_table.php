@@ -12,11 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('countries', function (Blueprint $table) {
-            $table->snowflakeIdAndPrimary();
+            $table->id();
             $table->string('name');
-            $table->foreignId('package_id');
-            $table->foreignId('city_id');
-            $table->string('country_photo');
+            $table->string('country_photo')->nullable();
             $table->auditColumns();
         });
     }

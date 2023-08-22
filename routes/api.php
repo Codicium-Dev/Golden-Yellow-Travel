@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CountryController;
+use App\Http\Controllers\PhotoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -45,7 +47,7 @@ Route::prefix("v1")->group(function () {
     Route::middleware('jwt')->group(function () {
 
         Route::controller(AuthController::class)->group(function () {
-            Route::post('register', "register");
+            Route::post('create-user', "register");
             Route::get('user-lists', 'showUserLists');
             Route::get('your-profile', 'yourProfile');
             Route::get('user-profile/{id}', 'checkUserProfile');
@@ -54,9 +56,13 @@ Route::prefix("v1")->group(function () {
             Route::post("logout-all", 'logoutFromAllDevices');
             Route::put("update-password", 'updatePassword');
         });
-    });
 
+        Route::apiResource("country", CountryController::class);
+        Route::apiResource('photo', PhotoController::class)->only(['index', "store", "show", "destroy"]);
+        Route::post('photo/multiple-delete', [PhotoController::class, 'deleteMultiplePhotos']);
+    });
     Route::post('/login', [AuthController::class, 'login']);
     Route::get('/blog', [BlogController::class, "index"])->name("blog.index");
     Route::post("/blog", [BlogController::class, "store"])->name("blog.store");
+
 });

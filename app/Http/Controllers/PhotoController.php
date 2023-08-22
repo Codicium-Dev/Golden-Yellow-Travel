@@ -4,7 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePhotoRequest;
 use App\Http\Requests\UpdatePhotoRequest;
+use App\Http\Resources\PhotoDetailResource;
+use App\Http\Resources\PhotoResource;
 use App\Models\Photo;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PhotoController extends Controller
 {
@@ -13,23 +18,59 @@ class PhotoController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $photos = Photo::when(Auth::user()->position !== "admin", function ($query) {
+            $query->where("user_id", Auth::id());
+        })->latest("id")->searchQuery()->sortingQuery()->paginationQuery();
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        if (empty($photos->toArray())) {
+            return response()->json([
+                "message" => "There is no photo"
+            ]);
+        }
+
+        return PhotoResource::collection($photos);
     }
 
     /**
      * Store a newly created resource in storage.
      */
+
+    private function formatBytes($bytes, $precision = 2)
+    {
+        $units = ['B', 'KB', 'MB', 'GB', 'TB'];
+
+        $bytes = max($bytes, 0);
+        $pow = floor(($bytes ? log($bytes) : 0) / log(1024));
+        $pow = min($pow, count($units) - 1);
+
+        return round($bytes, $precision) . ' ' . $units[$pow];
+    }
+
     public function store(StorePhotoRequest $request)
     {
-        //
+        if ($request->hasFile('photos')) {
+            $photos = $request->file('photos');
+            $savedPhotos = [];
+            foreach ($photos as $photo) {
+                $fileSize = $photo->getSize();
+                $name = pathinfo($photo->getClientOriginalName(), PATHINFO_FILENAME);
+                $savedPhoto = $photo->store("public/photo");
+                $savedPhotos[] = [
+                    "url" => $savedPhoto,
+                    "name" => $name,
+                    "extension" => $photo->extension(),
+                    "user_id" => Auth::id(),
+                    "size" => $this->formatBytes($fileSize),
+                    "created_at" => now(),
+                    "updated_at" => now()
+                ];
+            }
+            Photo::insert($savedPhotos);
+        }
+
+        return response()->json([
+            "message" => "Photo Uploaded Successfully"
+        ]);
     }
 
     /**
@@ -37,15 +78,14 @@ class PhotoController extends Controller
      */
     public function show(Photo $photo)
     {
-        //
-    }
+        $this->authorize('view', $photo);
+        if (is_null($photo)) {
+            return response()->json([
+                "message" => "there is no photo"
+            ]);
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Photo $photo)
-    {
-        //
+        return new PhotoDetailResource($photo);
     }
 
     /**
@@ -53,14 +93,50 @@ class PhotoController extends Controller
      */
     public function update(UpdatePhotoRequest $request, Photo $photo)
     {
-        //
+        // return $request;
+    }
+
+    public function deleteMultiplePhotos(Request $request)
+    {
+        $photoId = $request->photos;
+        $photos = Photo::whereIn("id", $photoId)->get();
+        if (empty($photos)) {
+            return response()->json([
+                "message" => "There is no photo to delete"
+            ]);
+        }
+
+        foreach ($photos as $photo) {
+            if (Auth::id() != $photo->user_id) {
+                return response()->json([
+                    'message' => "You are not allowed"
+                ]);
+            }
+        }
+        Photo::whereIn('id', $photoId)->delete();
+        Storage::delete($photos->pluck('url')->toArray());
+        return response()->json([
+            "message" => "Photos deleted successfully"
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Photo $photo)
+    public function destroy(string $id)
     {
-        //
+
+        $photo = Photo::find($id);
+        $this->authorize('delete', $photo);
+        if (is_null($photo)) {
+            return response()->json([
+                "message" => "There is no photo"
+            ]);
+        }
+        $photo->delete();
+        Storage::delete($photo->url);
+        return response()->json([
+            "message" => "Photo deleted successfully"
+        ]);
     }
 }

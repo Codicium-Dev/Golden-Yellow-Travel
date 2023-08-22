@@ -11,6 +11,15 @@ class CountryPolicy
     /**
      * Determine whether the user can view any models.
      */
+
+    public function before(User $user)
+    {
+        if ($user->position === "admin") {
+            return true;
+        }
+        return false;
+    }
+
     public function viewAny(User $user): bool
     {
         //
@@ -45,7 +54,10 @@ class CountryPolicy
      */
     public function delete(User $user, Country $country): bool
     {
-        //
+        if ($user->position === "admin") {
+            return true;
+        }
+        return false;
     }
 
     /**
