@@ -61,8 +61,10 @@ Route::prefix("v1")->group(function () {
         Route::apiResource('photo', PhotoController::class)->only(['index', "store", "show", "destroy"]);
         Route::post('photo/multiple-delete', [PhotoController::class, 'deleteMultiplePhotos']);
     });
+
+
+
     Route::post('/login', [AuthController::class, 'login']);
     Route::get('/blog', [BlogController::class, "index"])->name("blog.index");
     Route::post("/blog", [BlogController::class, "store"])->name("blog.store");
-
 });

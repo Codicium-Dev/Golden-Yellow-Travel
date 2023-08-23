@@ -6,8 +6,10 @@ use App\Http\Requests\StoreCountryRequest;
 use App\Http\Requests\UpdateCountryRequest;
 use App\Http\Resources\CountryResource;
 use App\Models\Country;
+use App\Models\Photo;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 
 class CountryController extends Controller
 {
@@ -45,6 +47,7 @@ class CountryController extends Controller
             'name' => $request->name,
             'country_photo' => $request->country_photo
         ]);
+
 
         return response()->json([
             'message' => 'Country Created successfully',

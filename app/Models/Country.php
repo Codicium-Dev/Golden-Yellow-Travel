@@ -23,4 +23,9 @@ class Country extends Model
     {
         return $this->hasMany(Packages::class);
     }
+
+    public function photo()
+    {
+        return $this->hasMany(Photo::class);
+    }
 }
