@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CityController;
 use App\Http\Controllers\CountryController;
+use App\Http\Controllers\PackagesController;
 use App\Http\Controllers\PhotoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -58,8 +60,20 @@ Route::prefix("v1")->group(function () {
         });
 
         Route::apiResource("country", CountryController::class);
-        Route::apiResource('photo', PhotoController::class)->only(['index', "store", "show", "destroy"]);
-        Route::post('photo/multiple-delete', [PhotoController::class, 'deleteMultiplePhotos']);
+        Route::apiResource("city", CityController::class);
+        Route::apiResource("package", PackagesController::class);
+
+        Route::controller(PhotoController::class)->prefix("photo")->group(function () {
+            Route::get("list", 'index');
+            Route::post("store", 'store');
+            Route::get("show/{id}", 'show');
+            Route::delete("delete/{id}", 'destroy');
+            Route::post('multiple-delete', 'deleteMultiplePhotos');
+            Route::get("trash", 'trash');
+            Route::patch("restore/{id}", "restore");
+            Route::post("force-delete/{id}", "forceDelete");
+            Route::post("clear-trash", "clearTrash");
+        });
     });
 
 

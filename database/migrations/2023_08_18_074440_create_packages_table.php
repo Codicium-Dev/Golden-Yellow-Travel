@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('packages', function (Blueprint $table) {
             $table->snowflakeIdAndPrimary();
+            $table->string('name');
             $table->foreignId('country_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('city_id');
-            $table->foreignId('tour_id');
-            $table->string('package_photo');
+            $table->string('package_photo')->nullable();
             $table->auditColumns();
         });
     }

@@ -69,21 +69,24 @@ class PhotoController extends Controller
         }
 
         return response()->json([
-            "message" => "Photo Uploaded Successfully"
-        ]);
+            "message" => "Photo Uploaded Successfully",
+            "id" => $request->id,
+        ], 200);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Photo $photo)
+    public function show($id)
     {
-        $this->authorize('view', $photo);
+        $photo = Photo::find($id);
+
         if (is_null($photo)) {
             return response()->json([
                 "message" => "there is no photo"
             ]);
         }
+        $this->authorize('view', $photo);
 
         return new PhotoDetailResource($photo);
     }
@@ -100,9 +103,10 @@ class PhotoController extends Controller
     {
         $photoId = $request->photos;
         $photos = Photo::whereIn("id", $photoId)->get();
+
         if (empty($photos)) {
             return response()->json([
-                "message" => "There is no photo to delete"
+                "message" => "There is no Photo to delete"
             ]);
         }
 
@@ -114,7 +118,7 @@ class PhotoController extends Controller
             }
         }
         Photo::whereIn('id', $photoId)->delete();
-        Storage::delete($photos->pluck('url')->toArray());
+        // Storage::delete($photos->pluck('url')->toArray());
         return response()->json([
             "message" => "Photos deleted successfully"
         ]);
@@ -125,18 +129,64 @@ class PhotoController extends Controller
      */
     public function destroy(string $id)
     {
-
         $photo = Photo::find($id);
-        $this->authorize('delete', $photo);
+
         if (is_null($photo)) {
             return response()->json([
                 "message" => "There is no photo"
             ]);
         }
+
+        $this->authorize('delete', $photo);
+
         $photo->delete();
-        Storage::delete($photo->url);
         return response()->json([
             "message" => "Photo deleted successfully"
-        ]);
+        ], 200);
+    }
+
+    public function trash()
+    {
+        $softDeletedPhotos = Photo::onlyTrashed()->get();
+
+        return response()->json(["data" => $softDeletedPhotos], 200);
+    }
+
+    public function restore(string $id)
+    {
+        $photo = Photo::withTrashed()->find($id);
+
+        $photo->restore();
+
+        return response()->json(['message' => 'Photo restored from trash'], 200);
+    }
+
+    public function forceDelete(string $id)
+    {
+        $photo = Photo::onlyTrashed()->find($id);
+
+        if (is_null($photo)) {
+            return response()->json([
+                "message" => "There is no photo"
+            ]);
+        }
+
+        $photo->forceDelete();
+        Storage::delete($photo->url);
+
+        return response()->json(['message' => 'Photo is deleted permanently'], 200);
+    }
+
+    public function clearTrash()
+    {
+        $photos = Photo::onlyTrashed()->get();
+
+        foreach ($photos as $photo) {
+            $photo->forceDelete();
+            Storage::delete($photo->url);
+        }
+        // $photos->forceDelete();
+
+        return response()->json(['message' => 'Trash Cleared'], 200);
     }
 }

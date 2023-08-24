@@ -11,7 +11,7 @@ class StorePackagesRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class StorePackagesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "name" => "required|unique:packages,name",
+            "country_id" => "required",
+            "package_photo" => "nullable"
         ];
     }
 }

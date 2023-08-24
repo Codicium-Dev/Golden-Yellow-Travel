@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CountryResource extends JsonResource
+class PackageResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,7 +18,8 @@ class CountryResource extends JsonResource
         return [
             "id" => $this->id,
             "name" => $this->name,
-            "country_photo" => $this->country_photo,
+            "country_name" => $this->country->name,
+            "package_photo" => $this->package_photo,
             "created_at" => $this->created_at->format('d m Y'),
             "updated_at" => $this->updated_at->format('d m Y')
         ];

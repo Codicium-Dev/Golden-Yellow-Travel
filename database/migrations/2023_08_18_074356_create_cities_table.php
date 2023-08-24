@@ -15,9 +15,7 @@ return new class extends Migration
             $table->snowflakeIdAndPrimary();
             $table->string('name');
             $table->foreignId('country_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('tour_id');
-            $table->foreignId("package_id");
-            $table->string('city_photo');
+            $table->string('city_photo')->nullable();
             $table->auditColumns();
         });
     }

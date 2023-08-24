@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->foreignId('country_id')->constrained()->cascadeOnDelete();
             $table->foreignId('city_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('package_id');
+            $table->foreignId('package_id')->constrained()->cascadeOnDelete();
             $table->foreignId('inclusion_id');
             $table->foreignId('itinerary_id');
             $table->string('overview');

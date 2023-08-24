@@ -8,6 +8,14 @@ use Illuminate\Auth\Access\Response;
 
 class PackagesPolicy
 {
+    public function before(User $user)
+    {
+        if ($user->position === "admin") {
+            return true;
+        }
+        return false;
+    }
+
     /**
      * Determine whether the user can view any models.
      */
@@ -45,7 +53,10 @@ class PackagesPolicy
      */
     public function delete(User $user, Packages $packages): bool
     {
-        //
+        if ($user->position === "admin") {
+            return true;
+        }
+        return false;
     }
 
     /**

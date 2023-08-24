@@ -8,6 +8,14 @@ use Illuminate\Auth\Access\Response;
 
 class CityPolicy
 {
+
+    public function before(User $user)
+    {
+        if ($user->position === "admin") {
+            return true;
+        }
+        return false;
+    }
     /**
      * Determine whether the user can view any models.
      */
@@ -45,7 +53,10 @@ class CityPolicy
      */
     public function delete(User $user, City $city): bool
     {
-        //
+        if ($user->position === "admin") {
+            return true;
+        }
+        return false;
     }
 
     /**
