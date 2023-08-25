@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePackageTourRequest;
 use App\Http\Requests\UpdatePackageTourRequest;
+use App\Http\Resources\PackageTourResource;
 use App\Models\PackageTour;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class PackageTourController extends Controller
 {
@@ -13,7 +16,15 @@ class PackageTourController extends Controller
      */
     public function index()
     {
-        //
+        $packageTour = PackageTour::searchQuery()
+            ->sortingQuery()
+            ->paginationQuery();
+
+
+        return response()->json([
+            "message" => "Package Tour List",
+            "data" => PackageTourResource::collection($packageTour)
+        ], 200);
     }
 
     /**
@@ -29,15 +40,51 @@ class PackageTourController extends Controller
      */
     public function store(StorePackageTourRequest $request)
     {
-        //
+        $packageTour = PackageTour::create([
+            'name' => $request->name,
+            'date' => $request->date,
+            "package_id" => $request->package_id,
+            "overview" => $request->overview,
+            "price" => $request->price,
+            "sale_price" => $request->sale_price,
+            "location" => $request->location,
+            "departure" => $request->departure,
+            "theme" => $request->theme,
+            "duration" => $request->duration,
+            "rating" => $request->rating,
+            "type" => $request->type,
+            "style" => $request->style,
+            "for_whom" => $request->for_whom,
+            'package_tour_photo' => $request->package_tour_photo
+        ]);
+
+
+        return response()->json([
+            'message' => 'Package Tour Created successfully',
+            'data' => $packageTour,
+        ], 200);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(PackageTour $packageTour)
+    public function show(String $id)
     {
-        //
+        $packageTour = PackageTour::find($id);
+
+        if (is_null($packageTour)) {
+            return response()->json([
+                'message' => 'Package Tour Not Found',
+            ], 404);
+        }
+
+        $packageTourResource = new PackageTourResource($packageTour);
+
+
+        return response()->json([
+            'message' => 'Package Tour Detail',
+            'data' => $packageTourResource
+        ], 200);
     }
 
     /**
@@ -51,16 +98,73 @@ class PackageTourController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePackageTourRequest $request, PackageTour $packageTour)
+    public function update(UpdatePackageTourRequest $request, String $id)
     {
-        //
+        $packageTour = PackageTour::find($id);
+        if (is_null($packageTour)) {
+            return response()->json([
+                'message' => 'Package Tour Not Found',
+            ], 404);
+        }
+
+        $packageTour->name = $request->name;
+        $packageTour->date = $request->date;
+        $packageTour->overview = $request->overview;
+        $packageTour->price = $request->price;
+        $packageTour->sale_price = $request->sale_price;
+        $packageTour->location = $request->location;
+        $packageTour->departure = $request->departure;
+        $packageTour->theme = $request->theme;
+        $packageTour->duration = $request->duration;
+        $packageTour->rating = $request->rating;
+        $packageTour->type = $request->type;
+        $packageTour->style = $request->style;
+        $packageTour->for_whom = $request->for_whom;
+        $packageTour->package_tour_photo = $request->package_tour_photo;
+
+        $packageTour->update();
+
+        return response()->json([
+            'message' => 'Package Tour Updated successfully',
+            'data' => $packageTour
+        ], 200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(PackageTour $packageTour)
+    public function destroy(String $id)
     {
-        //
+        $packageTour = PackageTour::find($id);
+
+        if (is_null($packageTour)) {
+            return response()->json([
+                'message' => 'Package Tour not Found',
+            ], 404);
+        }
+
+        if (Gate::denies('delete', $packageTour)) {
+            return response()->json([
+                'message' => 'You are no allowed',
+            ], 404);
+        }
+
+        $packageTour->delete();
+
+        return response()->json([
+            'message' => 'Package Tour deleted successfully',
+        ]);
+    }
+
+    public function dateFilter(Request $request)
+    {
+        $start_date = $request->date;
+
+        $result = PackageTour::whereDate('date', "<=", $start_date)->get();
+
+        return response()->json([
+            'message' => "Filtered Result",
+            "data" => $result
+        ]);
     }
 }

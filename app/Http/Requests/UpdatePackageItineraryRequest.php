@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateInclusionRequest extends FormRequest
+class UpdatePackageItineraryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,13 +22,12 @@ class UpdateInclusionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "tour_id" => "required",
-            'start_date' => 'nullable',
-            "end_date" => 'nullable',
-            "category" => 'nullable',
-            "price" => 'nullable',
-            "private_price" => 'nullable',
-            "sale_private_price" => 'nullable',
+            "name" => "required",
+            "description" => "nullable",
+            "meal" => "nullable",
+            "accommodation" => "nullable",
+            "note" => "nullable",
+            "itinerary_photo" => "nullable",
         ];
     }
 }

@@ -6,7 +6,10 @@ use App\Http\Controllers\CityController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\InclusionController;
 use App\Http\Controllers\ItineryController;
+use App\Http\Controllers\PackageInclusionController;
+use App\Http\Controllers\PackageItineraryController;
 use App\Http\Controllers\PackagesController;
+use App\Http\Controllers\PackageTourController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\TourController;
 use Illuminate\Http\Request;
@@ -63,12 +66,20 @@ Route::prefix("v1")->group(function () {
         });
 
         Route::apiResource("country", CountryController::class);
+
         Route::apiResource("city", CityController::class);
         Route::apiResource("tour", TourController::class);
-        Route::get("date-filter", [TourController::class, "dateFilter"]);
+        Route::get("date-filter/tour", [TourController::class, "dateFilter"]);
         Route::apiResource("itinerary", ItineryController::class);
         Route::apiResource("inclusion", InclusionController::class);
+
         Route::apiResource("package", PackagesController::class);
+        Route::apiResource("package-tour", PackageTourController::class);
+        Route::get("date-filter/package-tour", [PackageTourController::class, "dateFilter"]);
+        Route::apiResource("package-itinerary", PackageItineraryController::class);
+        Route::apiResource("package-inclusion", PackageInclusionController::class);
+
+
 
         Route::controller(PhotoController::class)->prefix("photo")->group(function () {
             Route::get("list", 'index');

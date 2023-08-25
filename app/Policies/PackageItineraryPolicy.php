@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\PackageTour;
+use App\Models\PackageItinerary;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class PackageTourPolicy
+class PackageItineraryPolicy
 {
     public function before(User $user)
     {
@@ -26,7 +26,7 @@ class PackageTourPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, PackageTour $packageTour): bool
+    public function view(User $user, PackageItinerary $packageItinerary): bool
     {
         //
     }
@@ -42,7 +42,7 @@ class PackageTourPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, PackageTour $packageTour): bool
+    public function update(User $user, PackageItinerary $packageItinerary): bool
     {
         //
     }
@@ -50,7 +50,7 @@ class PackageTourPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, PackageTour $packageTour): bool
+    public function delete(User $user, PackageItinerary $packageItinerary): bool
     {
         if ($user->position === "admin") {
             return true;
@@ -61,7 +61,7 @@ class PackageTourPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, PackageTour $packageTour): bool
+    public function restore(User $user, PackageItinerary $packageItinerary): bool
     {
         //
     }
@@ -69,7 +69,7 @@ class PackageTourPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, PackageTour $packageTour): bool
+    public function forceDelete(User $user, PackageItinerary $packageItinerary): bool
     {
         //
     }

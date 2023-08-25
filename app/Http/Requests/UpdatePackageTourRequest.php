@@ -11,7 +11,7 @@ class UpdatePackageTourRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,20 @@ class UpdatePackageTourRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "name" => "required",
+            'date' => "nullable",
+            "overview" => "nullable",
+            "price" => "nullable",
+            "sale_price" => "nullable",
+            "location" => "nullable",
+            "departure" => "nullable",
+            "theme" => "nullable",
+            "duration" => "nullable",
+            "rating" => "nullable",
+            "type" => "nullable",
+            "style" => "nullable",
+            "for_whom" => "nullable",
+            "package_tour_photo" => "nullable"
         ];
     }
 }

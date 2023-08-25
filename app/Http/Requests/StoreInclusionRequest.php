@@ -22,7 +22,13 @@ class StoreInclusionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "tour_id" => "required",
+            'start_date' => 'nullable',
+            "end_date" => 'nullable',
+            "category" => 'nullable',
+            "price" => 'nullable',
+            "private_price" => 'nullable',
+            "sale_private_price" => 'nullable',
         ];
     }
 }

@@ -24,6 +24,16 @@ class Tour extends Model
         return $this->belongsTo(City::class);
     }
 
+    public function itinerary()
+    {
+        return $this->hasMany(Itinery::class);
+    }
+
+    public function inclusion()
+    {
+        return $this->hasMany(Inclusion::class);
+    }
+
     public function photo()
     {
         return $this->hasMany(Photo::class);
