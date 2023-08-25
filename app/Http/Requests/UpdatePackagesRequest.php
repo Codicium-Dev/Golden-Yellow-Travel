@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Country;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdatePackagesRequest extends FormRequest
@@ -21,8 +22,11 @@ class UpdatePackagesRequest extends FormRequest
      */
     public function rules(): array
     {
+        $countryIds = implode(',', Country::all()->pluck('id')->toArray());
+
         return [
             "name" => "required|unique:packages,name",
+            'country_id' => "required|in:$countryIds",
             "package_photo" => "nullable"
         ];
     }

@@ -18,6 +18,7 @@ class CityResource extends JsonResource
         return [
             "id" => $this->id,
             "name" => $this->name,
+            "country_id" => $this->country_id,
             "country_name" => $this->country->name,
             "city_photo" => $this->city_photo,
             "created_at" => $this->created_at->format('d m Y'),

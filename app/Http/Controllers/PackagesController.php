@@ -66,7 +66,13 @@ class PackagesController extends Controller
             ], 404);
         }
 
-        return new PackageResource($packages);
+
+        $resourcePackage = new PackageResource($packages);
+
+        return response()->json([
+            'message' => 'Package Detail',
+            "data" => $resourcePackage
+        ], 200);
     }
 
     /**

@@ -8,6 +8,13 @@ use Illuminate\Auth\Access\Response;
 
 class InclusionPolicy
 {
+    public function before(User $user)
+    {
+        if ($user->position === "admin") {
+            return true;
+        }
+        return false;
+    }
     /**
      * Determine whether the user can view any models.
      */
@@ -45,7 +52,10 @@ class InclusionPolicy
      */
     public function delete(User $user, Inclusion $inclusion): bool
     {
-        //
+        if ($user->position === "admin") {
+            return true;
+        }
+        return false;
     }
 
     /**

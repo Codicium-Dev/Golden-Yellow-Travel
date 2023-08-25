@@ -22,8 +22,6 @@ class CountryController extends Controller
             ->sortingQuery()
             ->paginationQuery();
 
-
-
         return response()->json([
             "data" => CountryResource::collection($country)
         ], 200);
@@ -68,7 +66,13 @@ class CountryController extends Controller
             ], 404);
         }
 
-        return new CountryResource($country);
+        $countryResource = new CountryResource($country);
+
+
+        return response()->json([
+            'message' => 'Tour Detail',
+            'data' => $countryResource
+        ], 200);
     }
 
     /**
@@ -99,7 +103,8 @@ class CountryController extends Controller
 
         return response()->json([
             'message' => 'Country Updated successfully',
-        ]);
+            'data' => $country
+        ], 200);
     }
 
     /**

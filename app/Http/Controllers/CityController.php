@@ -19,8 +19,6 @@ class CityController extends Controller
             ->sortingQuery()
             ->paginationQuery();
 
-
-
         return response()->json([
             "data" => CityResource::collection($city)
         ], 200);
@@ -66,7 +64,12 @@ class CityController extends Controller
             ], 404);
         }
 
-        return new CityResource($city);
+        $resourceCity = new CityResource($city);
+
+        return response()->json([
+            'message' => 'City Detail',
+            "data" => $resourceCity
+        ], 200);
     }
 
     /**

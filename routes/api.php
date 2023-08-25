@@ -4,8 +4,11 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\CountryController;
+use App\Http\Controllers\InclusionController;
+use App\Http\Controllers\ItineryController;
 use App\Http\Controllers\PackagesController;
 use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\TourController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -61,6 +64,9 @@ Route::prefix("v1")->group(function () {
 
         Route::apiResource("country", CountryController::class);
         Route::apiResource("city", CityController::class);
+        Route::apiResource("tour", TourController::class);
+        Route::apiResource("itinerary", ItineryController::class);
+        Route::apiResource("inclusion", InclusionController::class);
         Route::apiResource("package", PackagesController::class);
 
         Route::controller(PhotoController::class)->prefix("photo")->group(function () {

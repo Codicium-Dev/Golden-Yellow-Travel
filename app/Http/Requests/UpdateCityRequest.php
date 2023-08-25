@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Models\City;
+use App\Models\Country;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateCityRequest extends FormRequest
@@ -19,10 +21,15 @@ class UpdateCityRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
+
+
     public function rules(): array
     {
+        $countryIds = implode(',', Country::all()->pluck('id')->toArray());
+
         return [
             "name" => "required|unique:cities,name",
+            'country_id' => "required|in:$countryIds",
             "city_photo" => "nullable"
         ];
     }

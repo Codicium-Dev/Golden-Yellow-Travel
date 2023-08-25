@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('itineries', function (Blueprint $table) {
             $table->snowflakeIdAndPrimary();
+            $table->string('name');
             $table->foreignId('tour_id')->constrained()->cascadeOnDelete();
-            $table->string('description');
-            $table->string('meal');
-            $table->string('accommodation');
-            $table->string('note');
-            $table->string('itinerary_photo');
+            $table->text('description')->nullable();
+            $table->string('meal')->nullable();
+            $table->string('accommodation')->nullable();
+            $table->text('note')->nullable();
+            $table->string('itinerary_photo')->nullable();
             $table->auditColumns();
         });
     }

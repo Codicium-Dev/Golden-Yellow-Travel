@@ -11,7 +11,7 @@ class UpdateTourRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,19 @@ class UpdateTourRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "name" => "required|unique:tours,name",
+            "overview" => "nullable",
+            "price" => "nullable",
+            "sale_price" => "nullable",
+            "location" => "nullable",
+            "departure" => "nullable",
+            "theme" => "nullable",
+            "duration" => "nullable",
+            "rating" => "nullable",
+            "type" => "nullable",
+            "style" => "nullable",
+            "for_whom" => "nullable",
+            "tour_photo" => "nullable"
         ];
     }
 }

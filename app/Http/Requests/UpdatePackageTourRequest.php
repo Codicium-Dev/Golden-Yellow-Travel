@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreItineryRequest extends FormRequest
+class UpdatePackageTourRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -22,13 +22,7 @@ class StoreItineryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => "required|unique:itineries,name",
-            "tour_id" => "required",
-            "description" => "nullable",
-            "meal" => "nullable",
-            "accommodation" => "nullable",
-            "note" => "nullable",
-            "itinerary_photo" => "nullable",
+            //
         ];
     }
 }

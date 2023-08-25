@@ -8,6 +8,13 @@ use Illuminate\Auth\Access\Response;
 
 class ItineryPolicy
 {
+    public function before(User $user)
+    {
+        if ($user->position === "admin") {
+            return true;
+        }
+        return false;
+    }
     /**
      * Determine whether the user can view any models.
      */
@@ -45,7 +52,10 @@ class ItineryPolicy
      */
     public function delete(User $user, Itinery $itinery): bool
     {
-        //
+        if ($user->position === "admin") {
+            return true;
+        }
+        return false;
     }
 
     /**

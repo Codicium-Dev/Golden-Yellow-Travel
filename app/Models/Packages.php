@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Packages extends Model
 {
-    use HasFactory, SnowflakeID, BasicAudit, SoftDeletes;
+    use HasFactory, SnowflakeID, BasicAudit;
 
     protected $fillable = ["name", "country_id", "package_photo"];
 
@@ -18,6 +18,12 @@ class Packages extends Model
     {
         return $this->belongsTo(Country::class);
     }
+
+    public function tour()
+    {
+        return $this->hasMany(Tour::class);
+    }
+
 
     public function photo()
     {

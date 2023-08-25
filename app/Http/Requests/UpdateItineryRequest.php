@@ -11,7 +11,7 @@ class UpdateItineryRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,12 @@ class UpdateItineryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "name" => "required|unique:itineries,name",
+            "description" => "nullable",
+            "meal" => "nullable",
+            "accommodation" => "nullable",
+            "note" => "nullable",
+            "itinerary_photo" => "nullable",
         ];
     }
 }
