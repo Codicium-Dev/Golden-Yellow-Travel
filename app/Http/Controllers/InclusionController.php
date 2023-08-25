@@ -85,7 +85,6 @@ class InclusionController extends Controller
      */
     public function update(UpdateInclusionRequest $request, String $id)
     {
-
         $inclusion = Inclusion::find($id);
         if (is_null($inclusion)) {
             return response()->json([
