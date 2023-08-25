@@ -21,6 +21,7 @@ class TourResource extends JsonResource
             "date" => $this->date,
             "country_name" => $this->city->country->name,
             "city_name" => $this->city->name,
+            "city_id" => $this->city_id,
             "overview" => $this->overview,
             "price" => $this->price,
             "sale_price" => $this->sale_price,
