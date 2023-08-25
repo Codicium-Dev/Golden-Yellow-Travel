@@ -22,7 +22,8 @@ class UpdateTourRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => "required|unique:tours,name",
+            "name" => "required",
+            'date' => "nullable",
             "overview" => "nullable",
             "price" => "nullable",
             "sale_price" => "nullable",

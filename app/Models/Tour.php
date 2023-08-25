@@ -12,7 +12,7 @@ class Tour extends Model
 {
     use HasFactory, SnowflakeID, BasicAudit;
 
-    protected $fillable = ["name", "city_id", "overview", "price", "sale_price", "location", "departure", "theme", "duration", "rating", "type", "for_whom", 'style', "tour_photo"];
+    protected $fillable = ["name", "city_id", "date", "overview", "price", "sale_price", "location", "departure", "theme", "duration", "rating", "type", "for_whom", 'style', "tour_photo"];
 
     public function country()
     {

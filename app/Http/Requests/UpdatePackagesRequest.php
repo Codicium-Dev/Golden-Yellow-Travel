@@ -25,7 +25,7 @@ class UpdatePackagesRequest extends FormRequest
         $countryIds = implode(',', Country::all()->pluck('id')->toArray());
 
         return [
-            "name" => "required|unique:packages,name",
+            "name" => "required",
             'country_id' => "required|in:$countryIds",
             "package_photo" => "nullable"
         ];

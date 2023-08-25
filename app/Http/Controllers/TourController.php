@@ -6,6 +6,7 @@ use App\Http\Requests\StoreTourRequest;
 use App\Http\Requests\UpdateTourRequest;
 use App\Http\Resources\TourResource;
 use App\Models\Tour;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use PhpParser\Node\Expr\Cast\String_;
 
@@ -16,13 +17,13 @@ class TourController extends Controller
      */
     public function index()
     {
-        $city = Tour::searchQuery()
+        $tour = Tour::searchQuery()
             ->sortingQuery()
             ->paginationQuery();
 
         return response()->json([
             "message" => "Tour List",
-            "data" => TourResource::collection($city)
+            "data" => TourResource::collection($tour)
         ], 200);
     }
 
@@ -41,6 +42,7 @@ class TourController extends Controller
     {
         $tour = Tour::create([
             'name' => $request->name,
+            'date' => $request->date,
             "city_id" => $request->city_id,
             "overview" => $request->overview,
             "price" => $request->price,
@@ -106,6 +108,7 @@ class TourController extends Controller
         }
 
         $tour->name = $request->name;
+        $tour->date = $request->date;
         $tour->overview = $request->overview;
         $tour->price = $request->price;
         $tour->sale_price = $request->sale_price;
@@ -150,6 +153,18 @@ class TourController extends Controller
 
         return response()->json([
             'message' => 'Tour deleted successfully',
+        ]);
+    }
+
+    public function dateFilter(Request $request)
+    {
+        $start_date = $request->date;
+
+        $result = Tour::whereDate('date', "<=", $start_date)->get();
+
+        return response()->json([
+            'message' => "Filtered Result",
+            "data" => $result
         ]);
     }
 }

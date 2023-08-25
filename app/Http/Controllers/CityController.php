@@ -94,6 +94,7 @@ class CityController extends Controller
         }
 
         $city->name = $request->name;
+        $city->country_id = $request->country_id;
         $city->city_photo = $request->city_photo;
 
         $city->update();

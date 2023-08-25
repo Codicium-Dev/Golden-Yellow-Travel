@@ -65,6 +65,7 @@ Route::prefix("v1")->group(function () {
         Route::apiResource("country", CountryController::class);
         Route::apiResource("city", CityController::class);
         Route::apiResource("tour", TourController::class);
+        Route::get("date-filter", [TourController::class, "dateFilter"]);
         Route::apiResource("itinerary", ItineryController::class);
         Route::apiResource("inclusion", InclusionController::class);
         Route::apiResource("package", PackagesController::class);

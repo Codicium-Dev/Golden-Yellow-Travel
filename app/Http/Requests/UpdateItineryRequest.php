@@ -22,7 +22,7 @@ class UpdateItineryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => "required|unique:itineries,name",
+            "name" => "required",
             "description" => "nullable",
             "meal" => "nullable",
             "accommodation" => "nullable",

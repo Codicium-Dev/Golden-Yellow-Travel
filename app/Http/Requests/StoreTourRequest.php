@@ -24,6 +24,7 @@ class StoreTourRequest extends FormRequest
         return [
             "name" => "required|unique:tours,name",
             "city_id" => "required",
+            "date" => "required",
             "overview" => "nullable",
             "price" => "nullable",
             "sale_price" => "nullable",

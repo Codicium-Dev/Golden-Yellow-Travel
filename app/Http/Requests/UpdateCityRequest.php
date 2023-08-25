@@ -28,8 +28,8 @@ class UpdateCityRequest extends FormRequest
         $countryIds = implode(',', Country::all()->pluck('id')->toArray());
 
         return [
-            "name" => "required|unique:cities,name",
-            'country_id' => "required|in:$countryIds",
+            "name" => "required",
+            'country_id' => "in:$countryIds",
             "city_photo" => "nullable"
         ];
     }
