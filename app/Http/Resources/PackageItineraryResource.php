@@ -23,7 +23,7 @@ class PackageItineraryResource extends JsonResource
             "meal" => $this->meal,
             "accommodation" => $this->accommodation,
             "note" => $this->note,
-            "itinerary_photo" => $this->itinerary_photo,
+            "package_itinerary_photo" => $this->package_itinerary_photo,
             "created_at" => $this->created_at->format('d m Y'),
             "updated_at" => $this->updated_at->format('d m Y')
         ];

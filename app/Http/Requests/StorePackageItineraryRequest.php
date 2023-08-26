@@ -28,7 +28,7 @@ class StorePackageItineraryRequest extends FormRequest
             "meal" => "nullable",
             "accommodation" => "nullable",
             "note" => "nullable",
-            "itinerary_photo" => "nullable",
+            "package_itinerary_photo" => "nullable",
         ];
     }
 }

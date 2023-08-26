@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('meal')->nullable();
             $table->string('accommodation')->nullable();
             $table->text('note')->nullable();
-            $table->string('itinerary_photo')->nullable();
+            $table->string('package_itinerary_photo')->nullable();
             $table->auditColumns();
         });
     }

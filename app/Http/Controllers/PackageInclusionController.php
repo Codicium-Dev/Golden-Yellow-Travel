@@ -95,7 +95,6 @@ class PackageInclusionController extends Controller
         $pacInclusion->start_date = $request->start_date;
         $pacInclusion->end_date = $request->end_date;
         $pacInclusion->category = $request->category;
-        $pacInclusion->accommodation = $request->accommodation;
         $pacInclusion->price = $request->price;
         $pacInclusion->sale_price = $request->sale_price;
         $pacInclusion->private_price = $request->private_price;

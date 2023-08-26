@@ -95,7 +95,6 @@ class InclusionController extends Controller
         $inclusion->start_date = $request->start_date;
         $inclusion->end_date = $request->end_date;
         $inclusion->category = $request->category;
-        $inclusion->accommodation = $request->accommodation;
         $inclusion->price = $request->price;
         $inclusion->sale_price = $request->sale_price;
         $inclusion->private_price = $request->private_price;

@@ -45,7 +45,7 @@ class PackageItineraryController extends Controller
             "meal" => $request->meal,
             "accommodation" => $request->accommodation,
             "note" => $request->note,
-            'itinerary_photo' => $request->itinerary_photo
+            'package_itinerary_photo' => $request->package_itinerary_photo
         ]);
 
         return response()->json([
@@ -96,7 +96,7 @@ class PackageItineraryController extends Controller
         $itinerary->meal = $request->meal;
         $itinerary->accommodation = $request->accommodation;
         $itinerary->note = $request->note;
-        $itinerary->itinerary_photo = $request->itinerary_photo;
+        $itinerary->package_itinerary_photo = $request->package_itinerary_photo;
 
         $itinerary->update();
 

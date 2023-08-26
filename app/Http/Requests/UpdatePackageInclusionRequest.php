@@ -22,7 +22,6 @@ class UpdatePackageInclusionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "package_tour_id" => "required",
             'start_date' => 'nullable',
             "end_date" => 'nullable',
             "category" => 'nullable',

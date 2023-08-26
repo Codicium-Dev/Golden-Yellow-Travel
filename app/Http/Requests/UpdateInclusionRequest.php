@@ -22,7 +22,6 @@ class UpdateInclusionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "tour_id" => "required",
             'start_date' => 'nullable',
             "end_date" => 'nullable',
             "category" => 'nullable',
