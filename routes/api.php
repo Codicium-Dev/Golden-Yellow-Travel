@@ -65,19 +65,58 @@ Route::prefix("v1")->group(function () {
             Route::put("update-password", 'updatePassword');
         });
 
-        Route::apiResource("country", CountryController::class);
+        Route::controller(CountryController::class)->group(function () {
+            Route::post("country/create", "store");
+            Route::put("country/update/{id}", "update");
+            Route::delete("country/destroy/{id}", "destroy");
+        });
 
-        Route::apiResource("city", CityController::class);
-        Route::apiResource("tour", TourController::class);
-        Route::get("date-filter/tour", [TourController::class, "dateFilter"]);
-        Route::apiResource("itinerary", ItineryController::class);
-        Route::apiResource("inclusion", InclusionController::class);
 
-        Route::apiResource("package", PackagesController::class);
-        Route::apiResource("package-tour", PackageTourController::class);
-        Route::get("date-filter/package-tour", [PackageTourController::class, "dateFilter"]);
-        Route::apiResource("package-itinerary", PackageItineraryController::class);
-        Route::apiResource("package-inclusion", PackageInclusionController::class);
+
+        Route::controller(CityController::class)->prefix("city")->group(function () {
+            Route::post("create", "store");
+            Route::put("update/{id}", "update");
+            Route::delete("destroy/{id}", "destroy");
+        });
+        Route::controller(TourController::class)->prefix("tour")->group(function () {
+            Route::post("create", "store");
+            Route::put("update/{id}", "update");
+            Route::delete("destroy/{id}", "destroy");
+        });
+        Route::controller(ItineryController::class)->prefix("itinerary")->group(function () {
+            Route::post("create", "store");
+            Route::put("update/{id}", "update");
+            Route::delete("destroy/{id}", "destroy");
+        });
+        Route::controller(InclusionController::class)->prefix("inclusion")->group(function () {
+            Route::post("create", "store");
+            Route::put("update/{id}", "update");
+            Route::delete("destroy/{id}", "destroy");
+        });
+
+
+
+
+        Route::controller(PackagesController::class)->prefix("package")->group(function () {
+            Route::post("create", "store");
+            Route::put("update/{id}", "update");
+            Route::delete("destroy/{id}", "destroy");
+        });
+        Route::controller(PackageTourController::class)->prefix("package-tour")->group(function () {
+            Route::post("create", "store");
+            Route::put("update/{id}", "update");
+            Route::delete("destroy/{id}", "destroy");
+        });
+        Route::controller(PackageItineraryController::class)->prefix("package-itinerary")->group(function () {
+            Route::post("create", "store");
+            Route::put("update/{id}", "update");
+            Route::delete("destroy/{id}", "destroy");
+        });
+        Route::controller(PackageInclusionController::class)->prefix("package-inclusion")->group(function () {
+            Route::post("create", "store");
+            Route::put("update/{id}", "update");
+            Route::delete("destroy/{id}", "destroy");
+        });
 
 
 
@@ -94,9 +133,56 @@ Route::prefix("v1")->group(function () {
         });
     });
 
-
-
     Route::post('/login', [AuthController::class, 'login']);
+
+    Route::controller(CountryController::class)->prefix("country")->group(function () {
+        Route::get("list", "index");
+        Route::get("show/{id}", "show");
+    });
+
+
+
+
+    Route::controller(CityController::class)->prefix("city")->group(function () {
+        Route::get("list", "index");
+        Route::get("show/{id}", "show");
+    });
+    Route::controller(TourController::class)->prefix("tour")->group(function () {
+        Route::get("list", "index");
+        Route::get("show/{id}", "show");
+        Route::get("date-filter", "dateFilter");
+    });
+    Route::controller(ItineryController::class)->prefix("itinerary")->group(function () {
+        Route::get("list", "index");
+        Route::get("show/{id}", "show");
+    });
+    Route::controller(InclusionController::class)->prefix("inclusion")->group(function () {
+        Route::get("list", "index");
+        Route::get("show/{id}", "show");
+    });
+
+
+
+    Route::controller(PackagesController::class)->prefix("package")->group(function () {
+        Route::get("list", "index");
+        Route::get("show/{id}", "show");
+    });
+    Route::controller(PackageTourController::class)->prefix("package-tour")->group(function () {
+        Route::get("list", "index");
+        Route::get("show/{id}", "show");
+        Route::get("date-filter", "dateFilter");
+    });
+    Route::controller(PackageItineraryController::class)->prefix("package-itinerary")->group(function () {
+        Route::get("list", "index");
+        Route::get("show/{id}", "show");
+    });
+    Route::controller(PackageInclusionController::class)->prefix("package-inclusion")->group(function () {
+        Route::get("list", "index");
+        Route::get("show/{id}", "show");
+    });
+
+
+
     Route::get('/blog', [BlogController::class, "index"])->name("blog.index");
     Route::post("/blog", [BlogController::class, "store"])->name("blog.store");
 });

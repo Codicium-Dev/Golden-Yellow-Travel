@@ -18,6 +18,7 @@ class PackageItineraryResource extends JsonResource
         return [
             "id" => $this->id,
             "name" => $this->name,
+            "package_tour_id" => $this->package_tour_id,
             "package_tour_name" => $this->packageTour->name,
             "description" => $this->description,
             "meal" => $this->meal,

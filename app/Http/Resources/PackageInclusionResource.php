@@ -18,6 +18,7 @@ class PackageInclusionResource extends JsonResource
         return [
             "id" => $this->id,
             "package_tour_name" => $this->packageTour->name,
+            "package_tour_id" => $this->package_tour_id,
             "start_date" => $this->start_date,
             "end_date" => $this->end_date,
             "meal" => $this->meal,

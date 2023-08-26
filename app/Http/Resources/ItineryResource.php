@@ -18,6 +18,7 @@ class ItineryResource extends JsonResource
         return [
             "id" => $this->id,
             "name" => $this->name,
+            "tour_id" => $this->tour_id,
             "tour_name" => $this->tour->name,
             "description" => $this->description,
             "meal" => $this->meal,

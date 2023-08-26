@@ -17,6 +17,7 @@ class InclusionResource extends JsonResource
         // return parent::toArray($request);
         return [
             "id" => $this->id,
+            "tour_id" => $this->tour_id,
             "tour_name" => $this->tour->name,
             "start_date" => $this->start_date,
             "end_date" => $this->end_date,
