@@ -23,6 +23,7 @@ class CountryController extends Controller
             ->paginationQuery();
 
         return response()->json([
+            "message" => "Country",
             "data" => CountryResource::collection($country)
         ], 200);
     }
@@ -70,7 +71,7 @@ class CountryController extends Controller
 
 
         return response()->json([
-            'message' => 'Tour Detail',
+            'message' => 'Country Detail',
             'data' => $countryResource
         ], 200);
     }

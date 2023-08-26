@@ -6,6 +6,8 @@ use App\Http\Controllers\CityController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\InclusionController;
 use App\Http\Controllers\ItineryController;
+use App\Http\Controllers\NewsContentController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PackageInclusionController;
 use App\Http\Controllers\PackageItineraryController;
 use App\Http\Controllers\PackagesController;
@@ -65,10 +67,10 @@ Route::prefix("v1")->group(function () {
             Route::put("update-password", 'updatePassword');
         });
 
-        Route::controller(CountryController::class)->group(function () {
-            Route::post("country/create", "store");
-            Route::put("country/update/{id}", "update");
-            Route::delete("country/destroy/{id}", "destroy");
+        Route::controller(CountryController::class)->prefix("country")->group(function () {
+            Route::post("create", "store");
+            Route::put("update/{id}", "update");
+            Route::delete("destroy/{id}", "destroy");
         });
 
 
@@ -120,6 +122,20 @@ Route::prefix("v1")->group(function () {
 
 
 
+
+        Route::controller(NewsController::class)->prefix("news")->group(function () {
+            Route::post("create", "store");
+            Route::put("update/{id}", "update");
+            Route::delete("destroy/{id}", "destroy");
+        });
+        Route::controller(NewsContentController::class)->prefix("news-content")->group(function () {
+            Route::post("create", "store");
+            Route::put("update/{id}", "update");
+            Route::delete("destroy/{id}", "destroy");
+        });
+
+
+
         Route::controller(PhotoController::class)->prefix("photo")->group(function () {
             Route::get("list", 'index');
             Route::post("store", 'store');
@@ -163,6 +179,7 @@ Route::prefix("v1")->group(function () {
 
 
 
+
     Route::controller(PackagesController::class)->prefix("package")->group(function () {
         Route::get("list", "index");
         Route::get("show/{id}", "show");
@@ -181,6 +198,17 @@ Route::prefix("v1")->group(function () {
         Route::get("show/{id}", "show");
     });
 
+
+
+
+    Route::controller(NewsController::class)->prefix("news")->group(function () {
+        Route::get("list", "index");
+        Route::get("show/{id}", "show");
+    });
+    Route::controller(NewsContentController::class)->prefix("news-content")->group(function () {
+        Route::get("list", "index");
+        Route::get("show/{id}", "show");
+    });
 
 
     Route::get('/blog', [BlogController::class, "index"])->name("blog.index");
