@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 //for Cpanel
 Route::get('/storage-link', function () {
     $targetFolder = storage_path('app/public');
-    $linkFolder = $_SERVER('DOCUMENT_ROOT') . '/public/storage';
+    $linkFolder = $_SERVER['DOCUMENT_ROOT'] . '/public/storage';
     symlink($targetFolder, $linkFolder);
 });
 //if error 403 happens, right click storage folder and give 755 for folders and 644 for files
