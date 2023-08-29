@@ -48,7 +48,7 @@ class CityController extends Controller
         return response()->json([
             'message' => 'City Created successfully',
             'data' => $city,
-        ]);
+        ], 200);
     }
 
     /**
@@ -127,6 +127,6 @@ class CityController extends Controller
 
         return response()->json([
             'message' => 'City deleted successfully',
-        ]);
+        ], 200);
     }
 }

@@ -153,7 +153,7 @@ class PackageTourController extends Controller
 
         return response()->json([
             'message' => 'Package Tour deleted successfully',
-        ]);
+        ], 200);
     }
 
     public function dateFilter(Request $request)
@@ -165,6 +165,6 @@ class PackageTourController extends Controller
         return response()->json([
             'message' => "Filtered Result",
             "data" => $result
-        ]);
+        ], 200);
     }
 }

@@ -51,7 +51,7 @@ class NewsController extends Controller
         return response()->json([
             'message' => 'News Created successfully',
             'data' => $news,
-        ]);
+        ], 200);
     }
 
 
@@ -133,6 +133,6 @@ class NewsController extends Controller
 
         return response()->json([
             'message' => 'News deleted successfully',
-        ]);
+        ], 200);
     }
 }

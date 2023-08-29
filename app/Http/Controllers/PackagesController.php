@@ -129,6 +129,6 @@ class PackagesController extends Controller
 
         return response()->json([
             'message' => 'Package deleted successfully',
-        ]);
+        ], 200);
     }
 }

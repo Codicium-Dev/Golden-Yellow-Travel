@@ -154,7 +154,7 @@ class TourController extends Controller
 
         return response()->json([
             'message' => 'Tour deleted successfully',
-        ]);
+        ], 200);
     }
 
     public function dateFilter(Request $request)
@@ -166,6 +166,6 @@ class TourController extends Controller
         return response()->json([
             'message' => "Filtered Result",
             "data" => $result
-        ]);
+        ], 200);
     }
 }

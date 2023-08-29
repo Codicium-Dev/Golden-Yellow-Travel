@@ -51,7 +51,7 @@ class CountryController extends Controller
         return response()->json([
             'message' => 'Country Created successfully',
             'data' => $country,
-        ]);
+        ], 200);
     }
 
     /**
@@ -131,6 +131,6 @@ class CountryController extends Controller
 
         return response()->json([
             'message' => 'Country deleted successfully',
-        ]);
+        ], 200);
     }
 }

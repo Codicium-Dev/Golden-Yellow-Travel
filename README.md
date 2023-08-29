@@ -137,13 +137,13 @@ https://api.goldenyellowtravel.yolodigitalmyanmar.com/api/v1/photo/trash
 https://api.goldenyellowtravel.yolodigitalmyanmar.com/api/v1/photo/restore/{id}
 ```
 
-#### force-delete (Get)
+#### Force Delete (Get)
 
 ```https
 https://api.goldenyellowtravel.yolodigitalmyanmar.com/api/v1/photo/force-delete/{id}
 ```
 
-#### Trash (Get)
+#### Clear Trash (Get)
 
 ```https
 https://api.goldenyellowtravel.yolodigitalmyanmar.com/api/v1/photo/clear-trash
