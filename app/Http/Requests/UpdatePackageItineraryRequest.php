@@ -24,9 +24,6 @@ class UpdatePackageItineraryRequest extends FormRequest
         return [
             "name" => "required",
             "description" => "nullable",
-            "meal" => "nullable",
-            "accommodation" => "nullable",
-            "note" => "nullable",
             "package_itinerary_photo" => "nullable",
         ];
     }

@@ -41,7 +41,6 @@ class NewsContentController extends Controller
         $newsContent = NewsContent::create([
             'news_id' => $request->news_id,
             'title' => $request->title,
-            'subtitle' => $request->subtitle,
             'content' => $request->content,
             'content_photo' => $request->content_photo
         ]);
@@ -97,7 +96,6 @@ class NewsContentController extends Controller
         }
 
         $news->title = $request->title;
-        $news->subtitle = $request->subtitle;
         $news->content = $request->content;
         $news->content_photo = $request->content_photo;
 

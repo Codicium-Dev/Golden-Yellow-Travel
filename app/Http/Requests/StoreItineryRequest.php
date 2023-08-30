@@ -25,9 +25,6 @@ class StoreItineryRequest extends FormRequest
             "name" => "required|unique:itineries,name",
             "tour_id" => "required",
             "description" => "nullable",
-            "meal" => "nullable",
-            "accommodation" => "nullable",
-            "note" => "nullable",
             "itinerary_photo" => "nullable",
         ];
     }

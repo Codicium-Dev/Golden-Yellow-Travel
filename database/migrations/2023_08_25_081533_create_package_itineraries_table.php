@@ -16,9 +16,6 @@ return new class extends Migration
             $table->string('name');
             $table->foreignId('package_tour_id')->constrained()->cascadeOnDelete();
             $table->text('description')->nullable();
-            $table->string('meal')->nullable();
-            $table->string('accommodation')->nullable();
-            $table->text('note')->nullable();
             $table->string('package_itinerary_photo')->nullable();
             $table->auditColumns();
         });

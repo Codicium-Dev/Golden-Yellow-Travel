@@ -24,9 +24,6 @@ class UpdateItineryRequest extends FormRequest
         return [
             "name" => "required",
             "description" => "nullable",
-            "meal" => "nullable",
-            "accommodation" => "nullable",
-            "note" => "nullable",
             "itinerary_photo" => "nullable",
         ];
     }

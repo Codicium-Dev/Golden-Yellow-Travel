@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('news_id')->constrained()->cascadeOnDelete();
             $table->string('title');
-            $table->string('subtitle')->nullable();
             $table->string('content')->nullable();
             $table->string("content_photo")->nullable();
             $table->auditColumns();

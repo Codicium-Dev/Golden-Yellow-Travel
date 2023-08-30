@@ -15,10 +15,7 @@ return new class extends Migration
             $table->snowflakeIdAndPrimary();
             $table->string('name');
             $table->foreignId('tour_id')->constrained()->cascadeOnDelete();
-            $table->text('description')->nullable();
-            $table->string('meal')->nullable();
-            $table->string('accommodation')->nullable();
-            $table->text('note')->nullable();
+            $table->longText('description')->nullable();
             $table->string('itinerary_photo')->nullable();
             $table->auditColumns();
         });

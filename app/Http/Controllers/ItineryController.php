@@ -43,9 +43,6 @@ class ItineryController extends Controller
             'name' => $request->name,
             "tour_id" => $request->tour_id,
             "description" => $request->description,
-            "meal" => $request->meal,
-            "accommodation" => $request->accommodation,
-            "note" => $request->note,
             'itinerary_photo' => $request->itinerary_photo
         ]);
 
@@ -93,9 +90,6 @@ class ItineryController extends Controller
 
         $itinerary->name = $request->name;
         $itinerary->description = $request->description;
-        $itinerary->meal = $request->meal;
-        $itinerary->accommodation = $request->accommodation;
-        $itinerary->note = $request->note;
         $itinerary->itinerary_photo = $request->itinerary_photo;
 
         $itinerary->update();

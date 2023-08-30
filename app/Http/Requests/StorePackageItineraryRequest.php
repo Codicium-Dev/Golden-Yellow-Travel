@@ -25,9 +25,6 @@ class StorePackageItineraryRequest extends FormRequest
             "name" => "required|unique:package_itineraries,name",
             "package_tour_id" => "required",
             "description" => "nullable",
-            "meal" => "nullable",
-            "accommodation" => "nullable",
-            "note" => "nullable",
             "package_itinerary_photo" => "nullable",
         ];
     }

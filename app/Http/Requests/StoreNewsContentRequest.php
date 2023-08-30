@@ -24,7 +24,6 @@ class StoreNewsContentRequest extends FormRequest
         return [
             "title" => "required|unique:news_contents,title",
             "news_id" => "required",
-            "subtitle" => "nullable",
             "content" => "nullable",
             "content_photo" => "nullable",
         ];

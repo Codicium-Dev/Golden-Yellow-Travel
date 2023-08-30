@@ -23,7 +23,6 @@ class UpdateNewsContentRequest extends FormRequest
     {
         return [
             "title" => "nullable",
-            "subtitle" => "nullable",
             "content" => "nullable",
             "content_photo" => "nullable",
         ];

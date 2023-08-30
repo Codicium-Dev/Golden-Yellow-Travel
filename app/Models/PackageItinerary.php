@@ -11,7 +11,7 @@ class PackageItinerary extends Model
 {
     use HasFactory, SnowflakeID, BasicAudit;
 
-    protected $fillable = ["name", "package_tour_id", "description", "meal", "accommodation", "note", "package_itinerary_photo"];
+    protected $fillable = ["name", "package_tour_id", "description", "package_itinerary_photo"];
 
     public function packageTour()
     {

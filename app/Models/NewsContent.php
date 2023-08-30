@@ -11,7 +11,7 @@ class NewsContent extends Model
 {
     use HasFactory, BasicAudit, SoftDeletes;
 
-    protected $fillable = ["news_id", "title", "subtitle", "content", "content_photo"];
+    protected $fillable = ["news_id", "title", "content", "content_photo"];
 
 
     public function new()

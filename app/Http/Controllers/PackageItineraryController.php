@@ -42,9 +42,6 @@ class PackageItineraryController extends Controller
             'name' => $request->name,
             "package_tour_id" => $request->package_tour_id,
             "description" => $request->description,
-            "meal" => $request->meal,
-            "accommodation" => $request->accommodation,
-            "note" => $request->note,
             'package_itinerary_photo' => $request->package_itinerary_photo
         ]);
 
@@ -93,9 +90,6 @@ class PackageItineraryController extends Controller
 
         $itinerary->name = $request->name;
         $itinerary->description = $request->description;
-        $itinerary->meal = $request->meal;
-        $itinerary->accommodation = $request->accommodation;
-        $itinerary->note = $request->note;
         $itinerary->package_itinerary_photo = $request->package_itinerary_photo;
 
         $itinerary->update();
