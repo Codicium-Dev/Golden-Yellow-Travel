@@ -36,7 +36,8 @@ class StoreTourRequest extends FormRequest
             "type" => "nullable",
             "style" => "nullable",
             "for_whom" => "nullable",
-            "tour_photo" => "nullable"
+            "tour_photo" => "nullable|array",
+            "tour_photo.*" => "nullable"
         ];
     }
 }

@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('type')->nullable();
             $table->string('style')->nullable();
             $table->string('for_whom')->nullable();
-            $table->string('tour_photo')->nullable();
+            $table->json('tour_photo')->nullable();
             $table->auditColumns();
         });
     }

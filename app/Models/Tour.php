@@ -14,6 +14,10 @@ class Tour extends Model
 
     protected $fillable = ["name", "city_id", "date", "overview", "price", "sale_price", "location", "departure", "theme", "duration", "rating", "type", "for_whom", 'style', "tour_photo"];
 
+    protected $casts = [
+        'tour_photo' => 'array',
+    ];
+
     public function city()
     {
         return $this->belongsTo(City::class);
