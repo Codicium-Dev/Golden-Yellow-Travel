@@ -719,3 +719,77 @@ https://api.goldenyellowtravel.yolodigitalmyanmar.com/api/v1/news-content/update
 ```https
 https://api.goldenyellowtravel.yolodigitalmyanmar.com/api/v1/news-content/delete/{id}
 ```
+
+## Inquiry Form
+
+### Form
+
+#### Store Form (Post)
+
+```https
+https://api.goldenyellowtravel.yolodigitalmyanmar.com/api/v1/form/store
+```
+
+| Arguments         | Type    | Description  |
+| :---------------- | :------ | :----------- |
+| travel_month      | integer | **Required** |
+| travel_year       | integer | **Required** |
+| stay_days         | integer | **Required** |
+| budget            | integer | **Required** |
+| adult_count       | integer | **Required** |
+| child_count       | integer | **Required** |
+| interest          | string  | **Required** |
+| destinations      | string  | **Required** |
+| f_name            | string  | **Required** |
+| l_name            | string  | **Nullable** |
+| email             | string  | **Required** |
+| phone             | string  | **Required** |
+| own_country       | string  | **Nullable** |
+| accommodation     | string  | **Nullable** |
+| how_u_know        | string  | **Nullable** |
+| other_information | string  | **Nullable** |
+| special_note      | string  | **Nullable** |
+
+#### Get Form (Get)
+
+```https
+https://api.goldenyellowtravel.yolodigitalmyanmar.com/api/v1/form/list
+```
+
+#### Show Form (Get)
+
+```https
+https://api.goldenyellowtravel.yolodigitalmyanmar.com/api/v1/form/show/{id}
+```
+
+#### Delete Form (Del)
+
+```https
+https://api.goldenyellowtravel.yolodigitalmyanmar.com/api/v1/form/delete/{id}
+```
+
+###### Note : ID must be in Array.
+
+#### Form Trash (Get)
+
+```https
+https://api.goldenyellowtravel.yolodigitalmyanmar.com/api/v1/form/trash
+```
+
+#### Form Restore (Get)
+
+```https
+https://api.goldenyellowtravel.yolodigitalmyanmar.com/api/v1/form/restore/{id}
+```
+
+#### Force Delete (Get)
+
+```https
+https://api.goldenyellowtravel.yolodigitalmyanmar.com/api/v1/form/force-delete/{id}
+```
+
+#### Clear Trash (Get)
+
+```https
+https://api.goldenyellowtravel.yolodigitalmyanmar.com/api/v1/form/clear-trash
+```

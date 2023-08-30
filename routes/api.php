@@ -5,6 +5,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\InclusionController;
+use App\Http\Controllers\InquiryFormController;
 use App\Http\Controllers\ItineryController;
 use App\Http\Controllers\NewsContentController;
 use App\Http\Controllers\NewsController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\PackagesController;
 use App\Http\Controllers\PackageTourController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\TourController;
+use App\Models\InquiryForm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -122,7 +124,6 @@ Route::prefix("v1")->group(function () {
 
 
 
-
         Route::controller(NewsController::class)->prefix("news")->group(function () {
             Route::post("create", "store");
             Route::put("update/{id}", "update");
@@ -137,11 +138,18 @@ Route::prefix("v1")->group(function () {
 
 
         Route::controller(PhotoController::class)->prefix("photo")->group(function () {
-            Route::get("list", 'index');
             Route::post("store", 'store');
-            Route::get("show/{id}", 'show');
             Route::delete("delete/{id}", 'destroy');
             Route::post('multiple-delete', 'deleteMultiplePhotos');
+            Route::get("trash", 'trash');
+            Route::patch("restore/{id}", "restore");
+            Route::post("force-delete/{id}", "forceDelete");
+            Route::post("clear-trash", "clearTrash");
+        });
+
+        Route::controller(InquiryFormController::class)->prefix("form")->group(function () {
+            Route::post("store", 'store');
+            Route::delete("delete/{id}", 'destroy');
             Route::get("trash", 'trash');
             Route::patch("restore/{id}", "restore");
             Route::post("force-delete/{id}", "forceDelete");
@@ -210,6 +218,17 @@ Route::prefix("v1")->group(function () {
         Route::get("show/{id}", "show");
     });
 
+
+
+    Route::controller(PhotoController::class)->prefix("photo")->group(function () {
+        Route::get("list", "index");
+        Route::get("show/{id}", "show");
+    });
+
+    Route::controller(InquiryFormController::class)->prefix("form")->group(function () {
+        Route::get("list", "index");
+        Route::get("show/{id}", "show");
+    });
 
     Route::get('/blog', [BlogController::class, "index"])->name("blog.index");
     Route::post("/blog", [BlogController::class, "store"])->name("blog.store");
