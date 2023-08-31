@@ -8,6 +8,13 @@ use Illuminate\Auth\Access\Response;
 
 class TourPricePolicy
 {
+    public function before(User $user)
+    {
+        if ($user->position === "admin") {
+            return true;
+        }
+        return false;
+    }
     /**
      * Determine whether the user can view any models.
      */
@@ -45,7 +52,10 @@ class TourPricePolicy
      */
     public function delete(User $user, TourPrice $tourPrice): bool
     {
-        //
+        if ($user->position === "admin") {
+            return true;
+        }
+        return false;
     }
 
     /**

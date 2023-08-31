@@ -45,10 +45,12 @@ class CountryController extends Controller
         ]);
 
 
-        return response()->json([
-            'message' => 'Country Created successfully',
-            'data' => $country,
-        ], 200);
+        // return response()->json([
+        //     'message' => 'Country Created successfully',
+        //     'data' => $country,
+        // ], 200);
+
+        return $this->success("Country List", $country);
     }
 
     /**

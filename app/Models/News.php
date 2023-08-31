@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class News extends Model
 {
-    use HasFactory, BasicAudit, SoftDeletes, HistoryRecord;
+    use HasFactory, BasicAudit, SoftDeletes;
 
     protected $fillable = ["user_id", "title", "title_photo", "description"];
 

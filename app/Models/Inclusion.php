@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Inclusion extends Model
 {
-    use HasFactory, SnowflakeID, BasicAudit, HistoryRecord;
+    use HasFactory, SnowflakeID, BasicAudit;
 
     protected $fillable = ["tour_id", "start_date", "end_date", "category", "price", "sale_price", "private_price", "sale_private_price"];
 

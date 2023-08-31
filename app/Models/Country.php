@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Country extends Model
 {
-    use HasFactory, SnowflakeID, BasicAudit, HistoryRecord;
+    use HasFactory, SnowflakeID, BasicAudit;
 
     protected $fillable = ["name", "country_photo"];
 

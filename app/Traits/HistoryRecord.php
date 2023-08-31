@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use App\Models\HistoryRecord as History;
+use Exception;
 use Illuminate\Support\Facades\DB;
 
 trait HistoryRecord

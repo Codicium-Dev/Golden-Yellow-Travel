@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PackageTourPrice extends Model
 {
-    use HasFactory, SnowflakeID, BasicAudit, HistoryRecord;
+    use HasFactory, SnowflakeID, BasicAudit;
 
     protected $fillable = ["package_tour_id", "category", "price", "sale_price", "private_price", "sale_private_price"];
 
