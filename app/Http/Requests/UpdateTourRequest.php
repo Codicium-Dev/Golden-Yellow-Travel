@@ -23,7 +23,8 @@ class UpdateTourRequest extends FormRequest
     {
         return [
             "name" => "required",
-            'date' => "nullable",
+            'start_date' => "nullable",
+            'end_date' => "nullable",
             "overview" => "nullable",
             "price" => "nullable",
             "sale_price" => "nullable",

@@ -24,7 +24,8 @@ class StorePackageTourRequest extends FormRequest
         return [
             "name" => "required|unique:package_tours,name",
             "package_id" => "required",
-            "date" => "required",
+            "start_date" => "required",
+            "end_date" => "required",
             "overview" => "nullable",
             "price" => "nullable",
             "sale_price" => "nullable",

@@ -39,7 +39,8 @@ class PackageTourController extends Controller
     {
         $packageTour = PackageTour::create([
             'name' => $request->name,
-            'date' => $request->date,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
             "package_id" => $request->package_id,
             "overview" => $request->overview,
             "price" => $request->price,
@@ -105,7 +106,8 @@ class PackageTourController extends Controller
         }
 
         $packageTour->name = $request->name;
-        $packageTour->date = $request->date;
+        $packageTour->start_date = $request->start_date;
+        $packageTour->end_date = $request->end_date;
         $packageTour->overview = $request->overview;
         $packageTour->price = $request->price;
         $packageTour->sale_price = $request->sale_price;

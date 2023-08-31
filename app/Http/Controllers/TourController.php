@@ -39,7 +39,8 @@ class TourController extends Controller
     {
         $tour = Tour::create([
             'name' => $request->name,
-            'date' => $request->date,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
             "city_id" => $request->city_id,
             "overview" => $request->overview,
             "price" => $request->price,
@@ -105,7 +106,8 @@ class TourController extends Controller
         }
 
         $tour->name = $request->name;
-        $tour->date = $request->date;
+        $tour->start_date = $request->start_date;
+        $tour->end_date = $request->end_date;
         $tour->overview = $request->overview;
         $tour->price = $request->price;
         $tour->sale_price = $request->sale_price;
