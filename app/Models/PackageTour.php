@@ -12,7 +12,7 @@ class PackageTour extends Model
 {
     use HasFactory, SnowflakeID, BasicAudit, HistoryRecord;
 
-    protected $fillable = ["name", "package_id", "date", "overview", "price", "sale_price", "location", "departure", "theme", "duration", "rating", "type", "for_whom", 'style', "package_tour_photo"];
+    protected $fillable = ["name", "package_id", "start_date", "end_date", "overview", "price", "sale_price", "location", "departure", "theme", "duration", "rating", "type", "for_whom", 'style', "package_tour_photo"];
 
     public function country()
     {

@@ -13,7 +13,7 @@ class Tour extends Model
 {
     use HasFactory, SnowflakeID, BasicAudit, HistoryRecord;
 
-    protected $fillable = ["name", "city_id", "date", "overview", "price", "sale_price", "location", "departure", "theme", "duration", "rating", "type", "for_whom", 'style', "tour_photo"];
+    protected $fillable = ["name", "city_id", "start_date", "end_date", "overview", "price", "sale_price", "location", "departure", "theme", "duration", "rating", "type", "for_whom", 'style', "tour_photo"];
 
     protected $casts = [
         'tour_photo' => 'array',
