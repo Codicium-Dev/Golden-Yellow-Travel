@@ -125,12 +125,10 @@ Route::prefix("v1")->group(function () {
 
 
         Route::controller(NewsController::class)->prefix("news")->group(function () {
-            Route::post("create", "store");
             Route::put("update/{id}", "update");
             Route::delete("destroy/{id}", "destroy");
         });
         Route::controller(NewsContentController::class)->prefix("news-content")->group(function () {
-            Route::post("create", "store");
             Route::put("update/{id}", "update");
             Route::delete("destroy/{id}", "destroy");
         });
@@ -210,10 +208,12 @@ Route::prefix("v1")->group(function () {
 
 
     Route::controller(NewsController::class)->prefix("news")->group(function () {
+        Route::post("create", "store");
         Route::get("list", "index");
         Route::get("show/{id}", "show");
     });
     Route::controller(NewsContentController::class)->prefix("news-content")->group(function () {
+        Route::post("create", "store");
         Route::get("list", "index");
         Route::get("show/{id}", "show");
     });

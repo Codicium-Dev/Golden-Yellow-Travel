@@ -20,10 +20,7 @@ class InclusionController extends Controller
             ->sortingQuery()
             ->paginationQuery();
 
-        return response()->json([
-            "message" => "inclusion List",
-            "data" => InclusionResource::collection($inclusion)
-        ], 200);
+        return $this->success("inclusion List", $inclusion);
     }
 
     /**

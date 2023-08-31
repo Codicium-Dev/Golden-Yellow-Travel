@@ -20,10 +20,7 @@ class PackageInclusionController extends Controller
             ->sortingQuery()
             ->paginationQuery();
 
-        return response()->json([
-            "message" => "Package Inclusion List",
-            "data" => PackageInclusionResource::collection($pacInclusion)
-        ], 200);
+        return $this->success("Package Inclusion List", $pacInclusion);
     }
 
     /**

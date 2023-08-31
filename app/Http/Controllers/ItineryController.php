@@ -20,10 +20,7 @@ class ItineryController extends Controller
             ->sortingQuery()
             ->paginationQuery();
 
-        return response()->json([
-            "message" => "itinerary List",
-            "data" => ItineryResource::collection($itinerary)
-        ], 200);
+        return $this->success("Itinerary List", $itinerary);
     }
 
     /**

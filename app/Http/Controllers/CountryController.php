@@ -22,10 +22,7 @@ class CountryController extends Controller
             ->sortingQuery()
             ->paginationQuery();
 
-        return response()->json([
-            "message" => "Country",
-            "data" => CountryResource::collection($country)
-        ], 200);
+        return $this->success("Country List", $country);
     }
 
     /**

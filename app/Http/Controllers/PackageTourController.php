@@ -21,10 +21,7 @@ class PackageTourController extends Controller
             ->paginationQuery();
 
 
-        return response()->json([
-            "message" => "Package Tour List",
-            "data" => PackageTourResource::collection($packageTour)
-        ], 200);
+        return $this->success("Package Tour List", $packageTour);
     }
 
     /**

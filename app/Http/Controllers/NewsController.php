@@ -21,10 +21,7 @@ class NewsController extends Controller
             ->sortingQuery()
             ->paginationQuery();
 
-        return response()->json([
-            "message" => "News",
-            "data" => NewsResource::collection($news)
-        ], 200);
+        return $this->success("News List", $news);
     }
 
     /**

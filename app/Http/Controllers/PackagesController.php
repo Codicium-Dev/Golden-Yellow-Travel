@@ -21,9 +21,7 @@ class PackagesController extends Controller
 
 
 
-        return response()->json([
-            "data" => PackageResource::collection($packages)
-        ], 200);
+        return $this->success("Package List", $packages);
     }
 
     /**

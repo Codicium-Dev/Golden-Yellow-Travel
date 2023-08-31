@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use App\Traits\BasicAudit;
+use App\Traits\HistoryRecord;
 use App\Traits\SnowflakeID;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class PackageTour extends Model
 {
-    use HasFactory, SnowflakeID, BasicAudit;
+    use HasFactory, SnowflakeID, BasicAudit, HistoryRecord;
 
     protected $fillable = ["name", "package_id", "date", "overview", "price", "sale_price", "location", "departure", "theme", "duration", "rating", "type", "for_whom", 'style', "package_tour_photo"];
 

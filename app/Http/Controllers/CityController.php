@@ -19,9 +19,7 @@ class CityController extends Controller
             ->sortingQuery()
             ->paginationQuery();
 
-        return response()->json([
-            "data" => CityResource::collection($city)
-        ], 200);
+        return $this->success("City List", $city);
     }
 
     /**

@@ -19,10 +19,7 @@ class PackageItineraryController extends Controller
             ->sortingQuery()
             ->paginationQuery();
 
-        return response()->json([
-            "message" => "itinerary List",
-            "data" => PackageItineraryResource::collection($itinerary)
-        ], 200);
+        return $this->success("Package Itinerary List", $itinerary);
     }
 
     /**

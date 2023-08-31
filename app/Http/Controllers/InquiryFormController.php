@@ -19,10 +19,7 @@ class InquiryFormController extends Controller
             ->sortingQuery()
             ->paginationQuery();
 
-        return response()->json([
-            "message" => "Form List",
-            "data" => $form
-        ], 200);
+        return $this->success("Form List", $form);
     }
 
     /**
