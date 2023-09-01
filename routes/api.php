@@ -13,9 +13,14 @@ use App\Http\Controllers\PackageInclusionController;
 use App\Http\Controllers\PackageItineraryController;
 use App\Http\Controllers\PackagesController;
 use App\Http\Controllers\PackageTourController;
+use App\Http\Controllers\PackageTourPriceController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\TourController;
+use App\Http\Controllers\TourPriceController;
 use App\Models\InquiryForm;
+use App\Models\PackageInclusion;
+use App\Models\PackageTourPrice;
+use App\Models\TourPrice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -92,6 +97,11 @@ Route::prefix("v1")->group(function () {
             Route::put("update/{id}", "update");
             Route::delete("destroy/{id}", "destroy");
         });
+        Route::controller(TourPriceController::class)->prefix("price")->group(function () {
+            Route::post("create", "store");
+            Route::put("update/{id}", "update");
+            Route::delete("destroy/{id}", "destroy");
+        });
         Route::controller(InclusionController::class)->prefix("inclusion")->group(function () {
             Route::post("create", "store");
             Route::put("update/{id}", "update");
@@ -112,6 +122,11 @@ Route::prefix("v1")->group(function () {
             Route::delete("destroy/{id}", "destroy");
         });
         Route::controller(PackageItineraryController::class)->prefix("package-itinerary")->group(function () {
+            Route::post("create", "store");
+            Route::put("update/{id}", "update");
+            Route::delete("destroy/{id}", "destroy");
+        });
+        Route::controller(PackageTourPriceController::class)->prefix("package-price")->group(function () {
             Route::post("create", "store");
             Route::put("update/{id}", "update");
             Route::delete("destroy/{id}", "destroy");
@@ -178,6 +193,10 @@ Route::prefix("v1")->group(function () {
         Route::get("list", "index");
         Route::get("show/{id}", "show");
     });
+    Route::controller(TourPriceController::class)->prefix("price")->group(function () {
+        Route::get("list", "index");
+        Route::get("show/{id}", "show");
+    });
     Route::controller(InclusionController::class)->prefix("inclusion")->group(function () {
         Route::get("list", "index");
         Route::get("show/{id}", "show");
@@ -196,6 +215,10 @@ Route::prefix("v1")->group(function () {
         Route::get("date-filter", "dateFilter");
     });
     Route::controller(PackageItineraryController::class)->prefix("package-itinerary")->group(function () {
+        Route::get("list", "index");
+        Route::get("show/{id}", "show");
+    });
+    Route::controller(PackageTourPriceController::class)->prefix("package-price")->group(function () {
         Route::get("list", "index");
         Route::get("show/{id}", "show");
     });

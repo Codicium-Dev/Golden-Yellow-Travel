@@ -20,7 +20,7 @@ class InclusionController extends Controller
             ->sortingQuery()
             ->paginationQuery();
 
-        return $this->success("inclusion List", $inclusion);
+        return $this->success("Inclusion List", $inclusion);
     }
 
     /**
@@ -38,13 +38,10 @@ class InclusionController extends Controller
     {
         $inclusion = Inclusion::create([
             "tour_id" => $request->tour_id,
-            'start_date' => $request->start_date,
-            "end_date" => $request->end_date,
-            "category" => $request->category,
-            "price" => $request->price,
-            "sale_price" => $request->sale_price,
-            "private_price" => $request->private_price,
-            "sale_private_price" => $request->sale_private_price,
+            'meals' => $request->meals,
+            "transport" => $request->transport,
+            "accommodation" => $request->accommodation,
+            "included_activities" => $request->included_activities,
         ]);
 
         return response()->json([
@@ -89,13 +86,10 @@ class InclusionController extends Controller
             ], 404);
         }
 
-        $inclusion->start_date = $request->start_date;
-        $inclusion->end_date = $request->end_date;
-        $inclusion->category = $request->category;
-        $inclusion->price = $request->price;
-        $inclusion->sale_price = $request->sale_price;
-        $inclusion->private_price = $request->private_price;
-        $inclusion->sale_private_price = $request->sale_private_price;
+        $inclusion->meals = $request->meals;
+        $inclusion->transport = $request->transport;
+        $inclusion->accommodation = $request->accommodation;
+        $inclusion->included_activities = $request->included_activities;
 
         $inclusion->update();
 

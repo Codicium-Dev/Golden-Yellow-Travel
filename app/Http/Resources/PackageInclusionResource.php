@@ -17,16 +17,12 @@ class PackageInclusionResource extends JsonResource
         // return parent::toArray($request);
         return [
             "id" => $this->id,
+            "package_tour_id" => $this->package_id,
             "package_tour_name" => $this->packageTour->name,
-            "package_tour_id" => $this->package_tour_id,
-            "start_date" => $this->start_date,
-            "end_date" => $this->end_date,
-            "meal" => $this->meal,
-            "category" => $this->category,
-            "price" => $this->price,
-            "sale_price" => $this->sale_price,
-            "private_price" => $this->private_price,
-            "sale_private_price" => $this->sale_private_price,
+            "meals" => $this->meals,
+            "transport" => $this->transport,
+            "accommodation" => $this->accommodation,
+            "included_activities" => $this->included_activities,
             "created_at" => $this->created_at->format('d m Y'),
             "updated_at" => $this->updated_at->format('d m Y')
         ];

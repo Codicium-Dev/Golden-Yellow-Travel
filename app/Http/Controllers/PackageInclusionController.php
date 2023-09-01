@@ -38,13 +38,10 @@ class PackageInclusionController extends Controller
     {
         $pacInclusion = PackageInclusion::create([
             "package_tour_id" => $request->package_tour_id,
-            'start_date' => $request->start_date,
-            "end_date" => $request->end_date,
-            "category" => $request->category,
-            "price" => $request->price,
-            "sale_price" => $request->sale_price,
-            "private_price" => $request->private_price,
-            "sale_private_price" => $request->sale_private_price,
+            'meals' => $request->meals,
+            "transport" => $request->transport,
+            "accommodation" => $request->accommodation,
+            "included_activities" => $request->included_activities,
         ]);
 
         return response()->json([
@@ -89,13 +86,10 @@ class PackageInclusionController extends Controller
             ], 404);
         }
 
-        $pacInclusion->start_date = $request->start_date;
-        $pacInclusion->end_date = $request->end_date;
-        $pacInclusion->category = $request->category;
-        $pacInclusion->price = $request->price;
-        $pacInclusion->sale_price = $request->sale_price;
-        $pacInclusion->private_price = $request->private_price;
-        $pacInclusion->sale_private_price = $request->sale_private_price;
+        $pacInclusion->meals = $request->meals;
+        $pacInclusion->transport = $request->transport;
+        $pacInclusion->accommodation = $request->accommodation;
+        $pacInclusion->included_activities = $request->included_activities;
 
         $pacInclusion->update();
 

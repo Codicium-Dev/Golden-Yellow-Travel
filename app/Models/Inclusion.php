@@ -12,7 +12,7 @@ class Inclusion extends Model
 {
     use HasFactory, SnowflakeID, BasicAudit;
 
-    protected $fillable = ["tour_id", "start_date", "end_date", "category", "price", "sale_price", "private_price", "sale_private_price"];
+    protected $fillable = ["tour_id", "meals", "transport", "accommodation", "included_activities"];
 
     public function tour()
     {

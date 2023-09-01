@@ -23,12 +23,10 @@ class StoreInclusionRequest extends FormRequest
     {
         return [
             "tour_id" => "required",
-            'start_date' => 'nullable',
-            "end_date" => 'nullable',
-            "category" => 'nullable',
-            "price" => 'nullable',
-            "private_price" => 'nullable',
-            "sale_private_price" => 'nullable',
+            'meals' => 'nullable',
+            "transport" => 'nullable',
+            "accommodation" => 'nullable',
+            "included_activities" => 'nullable',
         ];
     }
 }
