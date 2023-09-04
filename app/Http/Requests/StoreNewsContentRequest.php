@@ -22,7 +22,7 @@ class StoreNewsContentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "title" => "required|unique:news_contents,title",
+            "title" => "required",
             "news_id" => "required",
             "content" => "nullable",
             "content_photo" => "nullable",

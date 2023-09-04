@@ -18,9 +18,7 @@ class PhotoController extends Controller
      */
     public function index()
     {
-        $photos = Photo::when(Auth::user()->position !== "admin", function ($query) {
-            $query->where("user_id", Auth::id());
-        })->latest("id")->searchQuery()->sortingQuery()->paginationQuery();
+        $photos = Photo::latest("id")->searchQuery()->sortingQuery()->paginationQuery();
 
         if (empty($photos->toArray())) {
             return response()->json([
@@ -150,7 +148,7 @@ class PhotoController extends Controller
     {
         $softDeletedPhotos = Photo::onlyTrashed()->get();
 
-        return response()->json(["data" => $softDeletedPhotos], 200);
+        return response()->json(["data" => PhotoResource::collection($softDeletedPhotos)], 200);
     }
 
     public function restore(string $id)

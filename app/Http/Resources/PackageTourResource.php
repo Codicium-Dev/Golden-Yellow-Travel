@@ -18,7 +18,8 @@ class PackageTourResource extends JsonResource
         return [
             "id" => $this->id,
             "name" => $this->name,
-            "date" => $this->date,
+            "start_date" => $this->start_date,
+            "end_date" => $this->end_date,
             "package_name" => $this->package->name,
             "package_id" => $this->package_id,
             "country_name" => $this->package->country->name,
