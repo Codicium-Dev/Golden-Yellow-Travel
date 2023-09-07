@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('package_inclusions', function (Blueprint $table) {
             $table->snowflakeIdAndPrimary();
-            $table->foreignId('package_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('package_tour_id')->constrained()->cascadeOnDelete();
             $table->string('meals')->nullable();
             $table->string('transport')->nullable();
             $table->string('accommodation')->nullable();
