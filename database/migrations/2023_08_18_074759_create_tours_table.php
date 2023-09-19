@@ -15,6 +15,7 @@ return new class extends Migration
             $table->snowflakeIdAndPrimary();
             $table->string('name');
             $table->foreignId('city_id')->constrained()->cascadeOnDelete();
+            $table->string('package_name')->nullable();
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->text('overview')->nullable();

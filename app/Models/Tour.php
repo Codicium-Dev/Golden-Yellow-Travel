@@ -13,7 +13,7 @@ class Tour extends Model
 {
     use HasFactory, SnowflakeID, BasicAudit;
 
-    protected $fillable = ["name", "city_id", "start_date", "end_date", "overview", "price", "sale_price", "location", "departure", "theme", "duration", "rating", "type", "for_whom", 'style', "tour_photo"];
+    protected $fillable = ["name", "city_id", "package_name", "start_date", "end_date", "overview", "price", "sale_price", "location", "departure", "theme", "duration", "rating", "type", "for_whom", 'style', "tour_photo"];
 
     protected $casts = [
         'tour_photo' => 'array',
@@ -32,6 +32,11 @@ class Tour extends Model
     public function inclusion()
     {
         return $this->hasMany(Inclusion::class);
+    }
+
+    public function booking()
+    {
+        return $this->hasOne(BookingForm::class);
     }
 
     public function photo()

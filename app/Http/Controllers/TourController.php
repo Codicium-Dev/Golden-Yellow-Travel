@@ -42,6 +42,7 @@ class TourController extends Controller
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
             "city_id" => $request->city_id,
+            "package_name" => $request->package_name,
             "overview" => $request->overview,
             "price" => $request->price,
             "sale_price" => $request->sale_price,
@@ -108,6 +109,7 @@ class TourController extends Controller
         $tour->name = $request->name;
         $tour->start_date = $request->start_date;
         $tour->end_date = $request->end_date;
+        $tour->package_name = $request->package_name;
         $tour->overview = $request->overview;
         $tour->price = $request->price;
         $tour->sale_price = $request->sale_price;

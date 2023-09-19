@@ -26,6 +26,7 @@ class StoreTourRequest extends FormRequest
             "city_id" => "required",
             "start_date" => "required",
             "end_date" => "required",
+            "package_name" => "nullable",
             "overview" => "nullable",
             "price" => "nullable",
             "sale_price" => "nullable",

@@ -2,24 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreInquiryFormRequest;
-use App\Http\Requests\UpdateInquiryFormRequest;
-use App\Models\InquiryForm;
+use App\Http\Requests\StoreBookingFormRequest;
+use App\Http\Requests\UpdateBookingFormRequest;
+use App\Models\BookingForm;
 use Illuminate\Support\Facades\Gate;
-use PhpParser\Node\Expr\Cast\String_;
 
-class InquiryFormController extends Controller
+class BookingFormController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $form = InquiryForm::searchQuery()
+        $form = BookingForm::searchQuery()
             ->sortingQuery()
             ->paginationQuery();
 
-        return $this->success("Form List", $form);
+        return $this->success("Booking Form List", $form);
     }
 
     /**
@@ -33,31 +32,30 @@ class InquiryFormController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreInquiryFormRequest $request)
+    public function store(StoreBookingFormRequest $request)
     {
-        $form = InquiryForm::create([
-            'travel_month' => $request->travel_month,
-            'travel_year' => $request->travel_year,
-            'stay_days' => $request->stay_days,
-            'budget' => $request->budget,
-            'adult_count' => $request->adult_count,
-            'child_count' => $request->child_count,
-            'interest' => $request->interest,
-            'destinations' => $request->destinations,
-            'f_name' => $request->f_name,
-            'l_name' => $request->l_name,
+        $form = BookingForm::create([
+            'tour_id' => $request->tour_id,
+            'adult' => $request->adult,
+            'child' => $request->child,
+            'infants' => $request->infants,
+            'date' => $request->date,
+            'arrival_airport' => $request->arrival_airport,
+            'tour_type' => $request->tour_type,
+            'accommodation' => $request->accommodation,
+            'special_req' => $request->special_req,
+            'gender' => $request->gender,
+            'full_name' => $request->full_name,
             'email' => $request->email,
             'phone' => $request->phone,
-            'own_country' => $request->own_country,
-            'accommodation' => $request->accommodation,
-            'how_u_know' => $request->how_u_know,
-            'other_information' => $request->other_information,
-            'special_note' => $request->special_note,
+            'country' => $request->country,
+            'city' => $request->city,
+            'social_media' => $request->social_media,
         ]);
 
 
         return response()->json([
-            'message' => 'Form Created successfully',
+            'message' => 'Booking Form Created successfully',
             'data' => $form,
         ], 200);
     }
@@ -67,16 +65,16 @@ class InquiryFormController extends Controller
      */
     public function show(String $id)
     {
-        $form = InquiryForm::find($id);
+        $form = BookingForm::find($id);
 
         if (is_null($form)) {
             return response()->json([
-                'message' => 'Form Not Found',
+                'message' => 'Booking Form Not Found',
             ], 404);
         }
 
         return response()->json([
-            'message' => 'Form Detail',
+            'message' => 'Booking Form Detail',
             'data' => $form
         ], 200);
     }
@@ -84,7 +82,7 @@ class InquiryFormController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(InquiryForm $inquiryForm)
+    public function edit(BookingForm $bookingForm)
     {
         //
     }
@@ -92,7 +90,7 @@ class InquiryFormController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateInquiryFormRequest $request, InquiryForm $inquiryForm)
+    public function update(UpdateBookingFormRequest $request, BookingForm $bookingForm)
     {
         //
     }
@@ -102,11 +100,11 @@ class InquiryFormController extends Controller
      */
     public function destroy(String $id)
     {
-        $form = InquiryForm::find($id);
+        $form = BookingForm::find($id);
 
         if (is_null($form)) {
             return response()->json([
-                'message' => 'Form not Found',
+                'message' => 'Booking Form not Found',
             ], 404);
         }
 
@@ -119,50 +117,50 @@ class InquiryFormController extends Controller
         $form->delete();
 
         return response()->json([
-            'message' => 'From deleted successfully',
+            'message' => 'Booking From deleted successfully',
         ], 200);
     }
 
     public function trash()
     {
-        $form = InquiryForm::onlyTrashed()->get();
+        $form = BookingForm::onlyTrashed()->get();
 
         return response()->json(["message" => "Trash Bin", "data" => $form], 200);
     }
 
     public function restore(string $id)
     {
-        $form = InquiryForm::withTrashed()->find($id);
+        $form = BookingForm::withTrashed()->find($id);
 
         if (is_null($form)) {
             return response()->json([
-                'message' => 'Form not Found',
+                'message' => 'Booking Form not Found',
             ], 404);
         }
 
         $form->restore();
 
-        return response()->json(['message' => 'Form restored from trash'], 200);
+        return response()->json(['message' => 'Booking Form restored from trash'], 200);
     }
 
     public function forceDelete(string $id)
     {
-        $form = InquiryForm::onlyTrashed()->find($id);
+        $form = BookingForm::onlyTrashed()->find($id);
 
         if (is_null($form)) {
             return response()->json([
-                "message" => "There is no Form"
+                "message" => "There is no Booking Form"
             ]);
         }
 
         $form->forceDelete();
 
-        return response()->json(['message' => 'Form is deleted permanently'], 200);
+        return response()->json(['message' => 'Booking Form is deleted permanently'], 200);
     }
 
     public function clearTrash()
     {
-        $forms = InquiryForm::onlyTrashed()->get();
+        $forms = BookingForm::onlyTrashed()->get();
 
         foreach ($forms as $form) {
             $form->forceDelete();

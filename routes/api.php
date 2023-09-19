@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\BookingFormController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\InclusionController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\InquiryFormController;
 use App\Http\Controllers\ItineryController;
 use App\Http\Controllers\NewsContentController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\PackageBookingFormController;
 use App\Http\Controllers\PackageInclusionController;
 use App\Http\Controllers\PackageItineraryController;
 use App\Http\Controllers\PackagesController;
@@ -163,6 +165,25 @@ Route::prefix("v1")->group(function () {
         });
 
         Route::controller(InquiryFormController::class)->prefix("form")->group(function () {
+            Route::get("show/{id}", "show");
+            Route::delete("delete/{id}", 'destroy');
+            Route::get("trash", 'trash');
+            Route::patch("restore/{id}", "restore");
+            Route::post("force-delete/{id}", "forceDelete");
+            Route::post("clear-trash", "clearTrash");
+        });
+
+        Route::controller(BookingFormController::class)->prefix("book-form")->group(function () {
+            Route::get("show/{id}", "show");
+            Route::delete("delete/{id}", 'destroy');
+            Route::get("trash", 'trash');
+            Route::patch("restore/{id}", "restore");
+            Route::post("force-delete/{id}", "forceDelete");
+            Route::post("clear-trash", "clearTrash");
+        });
+
+        Route::controller(PackageBookingFormController::class)->prefix("package-book-form")->group(function () {
+            Route::get("show/{id}", "show");
             Route::delete("delete/{id}", 'destroy');
             Route::get("trash", 'trash');
             Route::patch("restore/{id}", "restore");
@@ -250,7 +271,16 @@ Route::prefix("v1")->group(function () {
     Route::controller(InquiryFormController::class)->prefix("form")->group(function () {
         Route::get("list", "index");
         Route::post("create", "store");
-        Route::get("show/{id}", "show");
+    });
+
+    Route::controller(BookingFormController::class)->prefix("book-form")->group(function () {
+        Route::get("list", "index");
+        Route::post("create", "store");
+    });
+
+    Route::controller(PackageBookingFormController::class)->prefix("package-book-form")->group(function () {
+        Route::get("list", "index");
+        Route::post("create", "store");
     });
 
     Route::get('/blog', [BlogController::class, "index"])->name("blog.index");
