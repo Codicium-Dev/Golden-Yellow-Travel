@@ -18,10 +18,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CountrySeeder::class,
             CitySeeder::class,
-            PackagesSeeder::class,
             PhotoSeeder::class,
-
-
         ]);
     }
 }
