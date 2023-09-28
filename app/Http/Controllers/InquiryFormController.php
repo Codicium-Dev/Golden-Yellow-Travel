@@ -125,9 +125,9 @@ class InquiryFormController extends Controller
 
     public function trash()
     {
-        $form = InquiryForm::onlyTrashed()->get();
+        $form = InquiryForm::onlyTrashed()->searchQuery()->sortingQuery()->paginationQuery();
 
-        return response()->json(["message" => "Trash Bin", "data" => $form], 200);
+        return $this->success('Trash Bin', $form);
     }
 
     public function restore(string $id)
