@@ -148,8 +148,9 @@ class PhotoController extends Controller
     {
         $softDeletedPhotos = Photo::onlyTrashed()->searchQuery()->sortingQuery()->paginationQuery();
 
-        return PhotoResource::collection($softDeletedPhotos);
-        // return $this->success('Trash Bin', $softDeletedPhotos);
+        $photo =  PhotoResource::collection($softDeletedPhotos);
+
+        return $this->success('Trash', $softDeletedPhotos);
     }
 
     public function restore(string $id)
