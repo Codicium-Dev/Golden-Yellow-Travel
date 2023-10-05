@@ -153,6 +153,22 @@ class PhotoController extends Controller
         return $this->success('Trash', $softDeletedPhotos);
     }
 
+    public function deletedPhoto($id)
+    {
+        $photo = Photo::onlyTrashed()->find($id);
+
+
+        if (is_null($photo)) {
+            return response()->json([
+                "message" => "There is no photo"
+            ]);
+        }
+
+        $showPhoto = new PhotoDetailResource($photo);
+
+        return $this->success('Trash', $showPhoto);
+    }
+
     public function restore(string $id)
     {
         $photo = Photo::withTrashed()->find($id);

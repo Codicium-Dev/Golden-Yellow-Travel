@@ -104,6 +104,7 @@ Route::prefix("v1")->group(function () {
             Route::delete("delete/{id}", 'destroy');
             Route::post('multiple-delete', 'deleteMultiplePhotos');
             Route::get("trash", 'trash');
+            Route::get("deleted-photo/{id}", 'deletedPhoto');
             Route::patch("restore/{id}", "restore");
             Route::post("force-delete/{id}", "forceDelete");
             Route::post("clear-trash", "clearTrash");
@@ -113,6 +114,7 @@ Route::prefix("v1")->group(function () {
             Route::get("show/{id}", "show");
             Route::delete("delete/{id}", 'destroy');
             Route::get("trash", 'trash');
+            Route::get("deleted-form/{id}", 'deletedForm');
             Route::patch("restore/{id}", "restore");
             Route::post("force-delete/{id}", "forceDelete");
             Route::post("clear-trash", "clearTrash");
@@ -122,6 +124,7 @@ Route::prefix("v1")->group(function () {
             Route::get("show/{id}", "show");
             Route::delete("delete/{id}", 'destroy');
             Route::get("trash", 'trash');
+            Route::get("deleted-form/{id}", 'deletedForm');
             Route::patch("restore/{id}", "restore");
             Route::post("force-delete/{id}", "forceDelete");
             Route::post("clear-trash", "clearTrash");

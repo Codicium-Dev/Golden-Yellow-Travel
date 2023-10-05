@@ -130,6 +130,20 @@ class InquiryFormController extends Controller
         return $this->success('Trash Bin', $form);
     }
 
+    public function deletedForm($id)
+    {
+        $form = InquiryForm::onlyTrashed()->find($id);
+
+
+        if (is_null($form)) {
+            return response()->json([
+                "message" => "There is no form"
+            ]);
+        }
+
+        return $this->success('Trash', $form);
+    }
+
     public function restore(string $id)
     {
         $form = InquiryForm::withTrashed()->find($id);

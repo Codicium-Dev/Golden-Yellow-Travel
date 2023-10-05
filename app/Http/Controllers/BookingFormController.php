@@ -128,6 +128,21 @@ class BookingFormController extends Controller
         return response()->json(["message" => "Trash Bin", "data" => $form], 200);
     }
 
+    public function deletedForm($id)
+    {
+        $form = BookingForm::onlyTrashed()->find($id);
+
+
+        if (is_null($form)) {
+            return response()->json([
+                "message" => "There is no form"
+            ]);
+        }
+
+        return $this->success('Trash', $form);
+    }
+
+
     public function restore(string $id)
     {
         $form = BookingForm::withTrashed()->find($id);
