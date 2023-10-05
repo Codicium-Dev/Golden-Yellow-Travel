@@ -6,6 +6,7 @@ use App\Http\Requests\StoreTourRequest;
 use App\Http\Requests\UpdateTourRequest;
 use App\Http\Resources\TourResource;
 use App\Models\Tour;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use PhpParser\Node\Expr\Cast\String_;
@@ -22,6 +23,27 @@ class TourController extends Controller
             ->paginationQuery();
 
         return $this->success("Tour List", $tour);
+    }
+
+    public function filteredTour(Request $request)
+    {
+        $tour = Tour::query();
+
+        if ($request->filled('city_id')) {
+            $tour->orWhere('city_id', 'like', '%' . $request->input('city_id') . '%');
+        }
+
+        if ($request->filled('start_date')) {
+            $tour->orWhere('start_date', 'like', '%' . $request->input('start_date') . '%');
+        }
+
+        if ($request->filled('duration')) {
+            $tour->orWhere('duration', 'like', '%' . $request->input('duration') . '%');
+        }
+
+        $tours = $tour->sortingQuery()->paginationQuery();
+
+        return $this->success("Tour List", $tours);
     }
 
     /**

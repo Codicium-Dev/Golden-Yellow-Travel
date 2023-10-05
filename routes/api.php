@@ -145,6 +145,7 @@ Route::prefix("v1")->group(function () {
     });
     Route::controller(TourController::class)->prefix("tour")->group(function () {
         Route::get("list", "index");
+        Route::get("filter", "filteredTour");
         Route::get("show/{id}", "show");
         Route::get("date-filter", "dateFilter");
     });
