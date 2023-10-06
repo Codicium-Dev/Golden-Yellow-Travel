@@ -23,6 +23,7 @@ class UpdateTourRequest extends FormRequest
     {
         return [
             "name" => "required",
+            "city_id" => "required",
             'start_date' => "nullable",
             'end_date' => "nullable",
             "package_name" => "nullable",

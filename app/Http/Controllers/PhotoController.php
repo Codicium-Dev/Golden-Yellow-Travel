@@ -26,8 +26,8 @@ class PhotoController extends Controller
             ]);
         }
 
-        return PhotoResource::collection($photos);
-        // return $this->success("Photo List", $photos);
+        $resourcePhoto = PhotoResource::collection($photos);
+        return $this->success("Photo List", $photos);
     }
 
     /**

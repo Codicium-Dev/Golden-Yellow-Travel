@@ -141,6 +141,7 @@ class TourController extends Controller
         }
 
         $tour->name = $request->name;
+        $tour->city_id = $request->city_id;
         $tour->start_date = $request->start_date;
         $tour->end_date = $request->end_date;
         $tour->package_name = $request->package_name;
