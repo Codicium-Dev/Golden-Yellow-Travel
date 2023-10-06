@@ -55,6 +55,9 @@ class QueryBuilderHelper
 
         if ($page && $perPage) {
             return $builder->paginate(perPage: $perPage, page: $page)->appends($requestQuery);
+        } else {
+            $defaultPerPage = 10;
+            return $builder->paginate($defaultPerPage)->appends($requestQuery);
         }
 
         return $builder->get();

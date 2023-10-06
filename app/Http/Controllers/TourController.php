@@ -22,6 +22,18 @@ class TourController extends Controller
             ->sortingQuery()
             ->paginationQuery();
 
+        $tourResource =  TourResource::collection($tour);
+
+        // return response()->json([
+        //     'data' => $tourResource,
+        //     'pagination' => [
+        //         'total' => $tour->total(),
+        //         'count' => $tour->count(),
+        //         'per_page' => $tour->perPage(),
+        //         'current_page' => $tour->currentPage(),
+        //         'total_pages' => $tour->lastPage(),
+        //     ],
+        // ], 200);
         return $this->success("Tour List", $tour);
     }
 
