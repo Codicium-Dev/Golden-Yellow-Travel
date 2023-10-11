@@ -14,21 +14,13 @@ return new class extends Migration
         Schema::create('booking_forms', function (Blueprint $table) {
             $table->snowflakeIdAndPrimary();
             $table->foreignId("tour_id")->constrained()->cascadeOnDelete();
-            $table->integer("adult");
-            $table->integer("child")->nullable();
-            $table->integer("infants")->nullable();
-            $table->string("date");
-            $table->string("arrival_airport");
-            $table->string("tour_type");
-            $table->string("accommodation");
-            $table->longText("special_req");
             $table->string("gender");
             $table->string("full_name");
             $table->string("email");
-            $table->string("phone");
-            $table->string("country");
-            $table->string("city");
-            $table->string("social_media");
+            $table->string("phone")->nullable();
+            $table->string("country")->nullable();
+            $table->string("city")->nullable();
+            $table->string("social_media")->nullable();
             $table->auditColumns();
         });
     }

@@ -22,21 +22,12 @@ class StoreBookingFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'tour_id' => "required",
-            'adult' => "required",
-            'child' => "nullable",
-            'infants' => "nullable",
-            'date' => "required",
-            'arrival_airport' => "required",
-            'tour_type' => "required",
-            'accommodation' => "required",
-            'special_req' => "required",
             'gender' => "required",
             'full_name' => "required",
             'email' => "required",
-            'phone' => "required",
-            'country' => "required",
-            'city' => "required",
+            'phone' => "nullable",
+            'country' => "nullable",
+            'city' => "nullable",
             'social_media' => "required",
         ];
     }

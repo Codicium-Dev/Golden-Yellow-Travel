@@ -36,14 +36,6 @@ class BookingFormController extends Controller
     {
         $form = BookingForm::create([
             'tour_id' => $request->tour_id,
-            'adult' => $request->adult,
-            'child' => $request->child,
-            'infants' => $request->infants,
-            'date' => $request->date,
-            'arrival_airport' => $request->arrival_airport,
-            'tour_type' => $request->tour_type,
-            'accommodation' => $request->accommodation,
-            'special_req' => $request->special_req,
             'gender' => $request->gender,
             'full_name' => $request->full_name,
             'email' => $request->email,

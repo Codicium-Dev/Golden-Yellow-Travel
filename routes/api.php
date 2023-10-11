@@ -11,6 +11,7 @@ use App\Http\Controllers\ItineryController;
 use App\Http\Controllers\NewsContentController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\TourController;
 use App\Http\Controllers\TourPriceController;
 use App\Models\InquiryForm;
@@ -129,6 +130,15 @@ Route::prefix("v1")->group(function () {
             Route::post("force-delete/{id}", "forceDelete");
             Route::post("clear-trash", "clearTrash");
         });
+        Route::controller(SubscribeController::class)->prefix("subscribe")->group(function () {
+            Route::get("show/{id}", "show");
+            Route::delete("delete/{id}", 'destroy');
+            Route::get("trash", 'trash');
+            Route::get("deleted-form/{id}", 'deletedForm');
+            Route::patch("restore/{id}", "restore");
+            Route::post("force-delete/{id}", "forceDelete");
+            Route::post("clear-trash", "clearTrash");
+        });
     });
 
     Route::post('/login', [AuthController::class, 'login']);
@@ -185,6 +195,11 @@ Route::prefix("v1")->group(function () {
     });
 
     Route::controller(BookingFormController::class)->prefix("book-form")->group(function () {
+        Route::get("list", "index");
+        Route::post("create", "store");
+    });
+
+    Route::controller(SubscribeController::class)->prefix("subscribe")->group(function () {
         Route::get("list", "index");
         Route::post("create", "store");
     });
