@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string("name")->nullable()->default("Unknown User");
             $table->string("email");
             $table->string("phone")->nullable();
-            $table->timestamps();
+            $table->auditColumns();
         });
     }
 
