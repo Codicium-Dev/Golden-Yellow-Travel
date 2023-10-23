@@ -15,6 +15,8 @@ class TourResource extends JsonResource
     public function toArray(Request $request): array
     {
         // return parent::toArray($request);
+        // dd($this);
+
         return [
             "id" => $this->id,
             "name" => $this->name,
@@ -37,7 +39,18 @@ class TourResource extends JsonResource
             "for_whom" => $this->for_whom,
             "tour_photo" => $this->tour_photo,
             "created_at" => $this->created_at->format('d m Y'),
-            "updated_at" => $this->updated_at->format('d m Y')
+            "updated_at" => $this->updated_at->format('d m Y'),
+
+            // Itinerary
+            "itineraries" => $this->itinerary,
+
+            // Inclusion
+            "inclusions" => $this->inclusion,
+
+            // Tour Price
+            "price" => $this->price,
+
+
         ];
     }
 }

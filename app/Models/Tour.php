@@ -34,6 +34,11 @@ class Tour extends Model
         return $this->hasMany(Inclusion::class);
     }
 
+    public function price()
+    {
+        return $this->hasMany(TourPrice::class);
+    }
+
     public function booking()
     {
         return $this->hasOne(BookingForm::class);
