@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Tour;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -49,6 +50,9 @@ class TourResource extends JsonResource
 
             // Tour Price
             "price" => $this->price,
+
+            //Tour List
+            "list" => Tour::with('city')->orderBy('city_id', 'desc')->paginate(1)
 
 
         ];

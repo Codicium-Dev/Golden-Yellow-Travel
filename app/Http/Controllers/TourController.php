@@ -34,6 +34,7 @@ class TourController extends Controller
         //         'total_pages' => $tour->lastPage(),
         //     ],
         // ], 200);
+
         return $this->success("Tour List", $tour);
     }
 
@@ -56,14 +57,6 @@ class TourController extends Controller
         $tours = $tour->sortingQuery()->paginationQuery();
 
         return $this->success("Tour List", $tours);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -113,9 +106,12 @@ class TourController extends Controller
 
         $tourResource = new TourResource($tour);
 
+        // $tour = Tour::with('city')
+        //     ->orderBy('city_id', 'desc')->paginate(1);
 
         return response()->json([
             'message' => 'Tour Detail',
+            // 'list' =>   $tour,
             'data' => $tourResource
         ], 200);
     }
